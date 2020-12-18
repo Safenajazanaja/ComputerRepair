@@ -50,4 +50,8 @@ dependencies {
     implementation 'org.jetbrains.exposed:exposed-jodatime:0.24.1'
     // mysql
     implementation "mysql:mysql-connector-java:5.1.48"
+
+    //RecyclerView
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.cardview:cardview:1.0.0"
 }
