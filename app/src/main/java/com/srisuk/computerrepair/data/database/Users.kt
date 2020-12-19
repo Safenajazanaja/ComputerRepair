@@ -6,7 +6,7 @@ object Users :Table("user"){
 
     val userId= integer("user_id").autoIncrement()
     val role_Id=integer("role_id")
-    val agency_id=integer("agency_id")
+    val agency_id=integer("agency_id").references(Agency.agency_id)
     val username= varchar("username",50)
     val password= varchar("password",10)
     val name= varchar("name",50)

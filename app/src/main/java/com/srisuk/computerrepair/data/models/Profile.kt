@@ -1,11 +1,8 @@
 package com.srisuk.computerrepair.data.models
 
-data class UserDb(
+data class Profile(
     val userId:Int,
-    val userName:String,
-    val passWord:String,
     val name: String,
     val telephone:String,
-    val role:Int,
-    val agency:Int
+    val agency_name:String
 )

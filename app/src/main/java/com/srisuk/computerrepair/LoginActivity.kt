@@ -2,11 +2,11 @@ package com.srisuk.computerrepair
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.srisuk.computerrepair.ui.BaseActivity
 import com.srisuk.computerrepair.ui.hideSoftKeyboard
 import com.srisuk.computerrepair.data.request.LoginRequest
-import com.srisuk.computerrepair.data.response.LoginResponse
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
@@ -28,6 +28,13 @@ class LoginActivity : BaseActivity() {
             }
         }
         root_Layout.setOnClickListener { hideSoftKeyboard() }
+
+        val data = dataSource.profile(1)
+        Log.d(TAG, "onCreate: $data")
+    }
+
+    companion object{
+        private const val TAG = "LoginActivity"
     }
 
 }
