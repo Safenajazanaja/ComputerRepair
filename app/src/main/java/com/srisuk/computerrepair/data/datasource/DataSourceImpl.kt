@@ -1,12 +1,11 @@
 package com.srisuk.computerrepair.data.datasource
 
 import com.srisuk.computerrepair.data.database.Agency
-import com.srisuk.computerrepair.data.database.AgencyType
+import com.srisuk.computerrepair.data.database.Agency_type
 import com.srisuk.computerrepair.data.database.Users
 import com.srisuk.computerrepair.data.map.ProfileMap
 import com.srisuk.computerrepair.data.models.Profile
 import com.srisuk.computerrepair.data.request.LoginRequest
-import com.srisuk.computerrepair.data.response.BaseResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
 import org.jetbrains.exposed.sql.StdOutSqlLogger
 import org.jetbrains.exposed.sql.addLogger
@@ -48,12 +47,12 @@ object DataSourceImpl : DataSource {
         return transaction {
             addLogger(StdOutSqlLogger)
 
-            (Users innerJoin Agency innerJoin AgencyType)
+            (Users innerJoin Agency innerJoin Agency_type)
                 .slice(
                     Users.userId,
                     Users.name,
                     Users.telephone,
-                    AgencyType.agency_name,
+                    Agency_type.agency_name,
                 )
                 .select { Users.userId eq userId }
                 .map { ProfileMap.toProfile(it) }
