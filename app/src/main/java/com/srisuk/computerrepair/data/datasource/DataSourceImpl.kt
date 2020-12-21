@@ -49,12 +49,12 @@ object DataSourceImpl : DataSource {
 
             (Users innerJoin Agency innerJoin Agency_type)
                 .slice(
-                    Users.userId,
+                    Users.user_id,
                     Users.name,
                     Users.telephone,
                     Agency_type.agency_name,
                 )
-                .select { Users.userId eq userId }
+                .select { Users.user_id eq userId }
                 .map { ProfileMap.toProfile(it) }
 //                .map {row->
 //                    Profile(

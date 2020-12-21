@@ -16,13 +16,13 @@ abstract class BaseFragment(@LayoutRes layout: Int) : Fragment(layout) {
         super.onCreate(savedInstanceState)
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
         val host = "192.168.43.52"
-        val databaseName = "repairdbv2"
+        val databaseName = "repairdb"
         val url = "jdbc:mysql://$host:3306/$databaseName?useUnicode=true&characterEncoding=utf-8"
         Database.connect(
             url = url,
             driver = "com.mysql.jdbc.Driver",
-            user = "srisuk015",
-            password = "srisuk015",
+            user = "computerrepair",
+            password = "1234",
         )
     }
 
