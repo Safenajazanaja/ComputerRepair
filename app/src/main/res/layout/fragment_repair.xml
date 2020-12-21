@@ -19,31 +19,37 @@
         android:padding="20dp">
 
         <TextView
+            android:background="@drawable/custorm_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:hint="หน่วยงาน" />
 
         <Spinner
+            android:background="@drawable/custorm_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" />
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp" />
 
         <Spinner
+            android:background="@drawable/custorm_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" />
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp" />
 
         <Spinner
+            android:background="@drawable/custorm_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" />
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp" />
 
         <Spinner
+            android:background="@drawable/custorm_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" />
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp" />
 
         <EditText
+            android:background="@drawable/custorm_input"
             android:gravity="start"
             android:hint="รายละเอียด"
             android:layout_marginTop="50dp"
@@ -51,7 +57,9 @@
             android:layout_height="200dp"/>
 
         <Button
-
+            android:backgroundTint="#8F2F2F"
+            android:background="@drawable/custorm_input"
+            android:textColor="@color/white"
             android:text="แจ้งซ่อม"
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
