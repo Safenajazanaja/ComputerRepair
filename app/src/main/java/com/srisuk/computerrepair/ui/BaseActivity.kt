@@ -13,14 +13,14 @@ abstract class BaseActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
-        val host = "192.168.43.52"
+        val host = "192.168.0.200"
         val databaseName = "repairdbv2"
         val url = "jdbc:mysql://$host:3306/$databaseName?useUnicode=true&characterEncoding=utf-8"
         Database.connect(
             url = url,
             driver = "com.mysql.jdbc.Driver",
-            user = "srisuk015",
-            password = "srisuk015",
+            user = "drusp",
+            password = "drusp",
         )
     }
 }
