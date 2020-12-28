@@ -1,5 +1,6 @@
 package com.srisuk.computerrepair
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,12 @@ class LoginActivity : BaseActivity() {
             val result = dataSource.login(req)
             if (result.success){
                 // TODO: 12/10/2020 goto main
+                val preferences = getSharedPreferences("file", Context.MODE_PRIVATE)
+                result.userId?.let { it1 ->
+                    preferences.edit()
+                        .putInt("userId", it1)
+                        .apply()
+                }
                 val intent = Intent(baseContext, MainActivity::class.java)
                 startActivity(intent);
 

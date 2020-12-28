@@ -32,6 +32,7 @@
 
             <TextView
                 android:id="@+id/tv_dete"
+                android:textSize="18sp"
                 style="@style/TextViewLargeApplicationSub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,6 +43,7 @@
 
             <TextView
                 android:id="@+id/tv_agency"
+                android:textSize="18sp"
                 style="@style/TextViewLargeApplicationSub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,6 +52,7 @@
                 android:text="หน่วยงาน" />
 
             <TextView
+                android:textSize="18sp"
                 android:id="@+id/tv_room"
                 style="@style/TextViewLargeApplicationSub"
                 android:layout_width="wrap_content"
@@ -61,6 +64,7 @@
 
             <TextView
                 android:id="@+id/tv_detail"
+                android:textSize="18sp"
                 style="@style/TextViewLargeApplicationSub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

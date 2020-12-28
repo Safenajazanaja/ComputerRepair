@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 
+
 abstract class BaseRecyclerView<T : Any> : RecyclerView.Adapter<BaseRecyclerView<T>.BaseHolder>() {
 
     private val list by lazy { mutableListOf<T>() }
@@ -23,6 +24,7 @@ abstract class BaseRecyclerView<T : Any> : RecyclerView.Adapter<BaseRecyclerView
     override fun onBindViewHolder(holder: BaseHolder, position: Int) {
         holder.itemView onBindViewHolder list[position]
     }
+
 
     @LayoutRes
     abstract fun getLayout(): Int
