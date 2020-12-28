@@ -1,16 +1,15 @@
 package com.srisuk.computerrepair.data.datasource
 
-import com.srisuk.computerrepair.data.database.Agency
-import com.srisuk.computerrepair.data.database.Agency_type
-import com.srisuk.computerrepair.data.database.Users
+import com.srisuk.computerrepair.data.database.*
+import com.srisuk.computerrepair.data.map.HistoryMap
 import com.srisuk.computerrepair.data.map.ProfileMap
+import com.srisuk.computerrepair.data.models.History
 import com.srisuk.computerrepair.data.models.Profile
 import com.srisuk.computerrepair.data.request.LoginRequest
+import com.srisuk.computerrepair.data.response.HistoryResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
-import org.jetbrains.exposed.sql.StdOutSqlLogger
-import org.jetbrains.exposed.sql.addLogger
-import org.jetbrains.exposed.sql.andWhere
-import org.jetbrains.exposed.sql.select
+import kotlinx.coroutines.selects.select
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object DataSourceImpl : DataSource {
@@ -43,16 +42,16 @@ object DataSourceImpl : DataSource {
         return response
     }
 
-    override fun profile(userId:Int): Profile {
+    override fun profile(userId: Int): Profile {
         return transaction {
             addLogger(StdOutSqlLogger)
 
-            (Users innerJoin Agency innerJoin Agency_type)
+            (Users innerJoin Agency)
                 .slice(
                     Users.user_id,
-                    Users.name,
+                    Users.full_name,
                     Users.telephone,
-                    Agency_type.agency_name,
+                    Agency.agency_name,
                 )
                 .select { Users.user_id eq userId }
                 .map { ProfileMap.toProfile(it) }
@@ -65,6 +64,24 @@ object DataSourceImpl : DataSource {
 //                    )
 //                }
                 .single()
+        }
+    }
+
+    override fun history(userId: Int): List<History> {
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            (Repair innerJoin Users innerJoin Agency innerJoin Room innerJoin Problem innerJoin Status )
+                .slice(
+
+                    Repair.repair_date,
+                    Agency.agency_name,
+                    Room.room_number,
+                    Problem.problem_name,
+                    Status.status_name
+                )
+                .select { Repair.user_id eq userId }
+                .andWhere { Users.user_id eq Repair.user_id }
+                .map { HistoryMap.toHistory(it) }
         }
     }
 
