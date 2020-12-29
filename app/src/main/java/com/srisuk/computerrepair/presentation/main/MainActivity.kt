@@ -1,9 +1,13 @@
-package com.srisuk.computerrepair
+package com.srisuk.computerrepair.presentation.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.srisuk.computerrepair.R
+import com.srisuk.computerrepair.presentation.repair.RepairFragment
+import com.srisuk.computerrepair.presentation.history.HistoryFragment
+import com.srisuk.computerrepair.presentation.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

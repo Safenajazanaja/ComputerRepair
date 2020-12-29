@@ -1,13 +1,15 @@
-package com.srisuk.computerrepair
+package com.srisuk.computerrepair.presentation.login
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.srisuk.computerrepair.R
 import com.srisuk.computerrepair.ui.BaseActivity
 import com.srisuk.computerrepair.ui.hideSoftKeyboard
 import com.srisuk.computerrepair.data.request.LoginRequest
+import com.srisuk.computerrepair.presentation.main.MainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {

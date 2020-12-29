@@ -1,70 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:text="แจ้งซ่อม"
-        android:textSize="30dp"
-        android:gravity="center"
-        android:textStyle="italic"
-        android:layout_height="wrap_content"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="wrap_content">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:text="ข้อมูลส่วนตัว"
+            android:textSize="30dp"
+            android:textStyle="italic" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/not"
             android:background="@drawable/custorm_input"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:gravity="center"
             android:hint="หน่วยงาน" />
 
         <Spinner
+
+            style="@style/not"
             android:background="@drawable/custorm_input"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp" />
+            android:id="@+id/bar_spinner_device"
+            android:textAlignment="center"
+            />
+
+        <Spinner
+            android:id="@+id/bar_spinner2"
+            style="@style/not"
+            android:background="@drawable/custorm_input"
+            android:padding="20dp" />
+
 
         <Spinner
             android:background="@drawable/custorm_input"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp" />
+            android:id="@+id/bar_spinner3"
+            style="@style/not"
+            android:padding="20dp" />
+
 
         <Spinner
             android:background="@drawable/custorm_input"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp" />
+            android:id="@+id/bar_spinner4"
+            style="@style/not"
+            android:padding="20dp" />
 
-        <Spinner
-            android:background="@drawable/custorm_input"
+        <LinearLayout
+            android:padding="30dp"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
-        <EditText
-            android:background="@drawable/custorm_input"
-            android:gravity="start"
-            android:hint="รายละเอียด"
-            android:layout_marginTop="50dp"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            <EditText
+                style="@style/not"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/custorm_input"
+                android:gravity="start"
+                android:hint="รายละเอียด" />
+
+        </LinearLayout>
 
         <Button
-            android:backgroundTint="#8F2F2F"
-            android:background="@drawable/custorm_input"
-            android:textColor="@color/white"
-            android:text="แจ้งซ่อม"
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
+            style="@style/not"
+            android:layout_gravity="center"
+            android:textColor="#8F2F2F"
+            android:background="@drawable/custorm_input"
+            android:text="แจ้งซ่อม" />
 
     </LinearLayout>
 
