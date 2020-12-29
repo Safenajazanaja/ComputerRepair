@@ -1,12 +1,9 @@
-package com.srisuk.computerrepair
+package com.srisuk.computerrepair.presentation.history
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.srisuk.computerrepair.data.models.History
-import com.srisuk.computerrepair.data.response.HistoryResponse
+import com.srisuk.computerrepair.R
 import com.srisuk.computerrepair.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_history.*
-import kotlinx.android.synthetic.main.item.*
-
 
 
 class HistoryFragment : BaseFragment(R.layout.fragment_history) {

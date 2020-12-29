@@ -1,11 +1,10 @@
-package com.srisuk.computerrepair
+package com.srisuk.computerrepair.presentation.history
 
 import android.view.View
+import com.srisuk.computerrepair.R
 import com.srisuk.computerrepair.data.models.History
 import com.srisuk.computerrepair.ui.BaseRecyclerView
 import kotlinx.android.synthetic.main.item.view.*
-import org.joda.time.DateTime
-import java.text.SimpleDateFormat
 
 class HistoryAdapter : BaseRecyclerView<History>() {
 

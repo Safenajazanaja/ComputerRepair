@@ -1,14 +1,14 @@
 package com.srisuk.computerrepair.data.datasource
 
 import com.srisuk.computerrepair.data.database.*
+import com.srisuk.computerrepair.data.map.DeviceMap
 import com.srisuk.computerrepair.data.map.HistoryMap
 import com.srisuk.computerrepair.data.map.ProfileMap
+import com.srisuk.computerrepair.data.models.DeviceModel
 import com.srisuk.computerrepair.data.models.History
 import com.srisuk.computerrepair.data.models.Profile
 import com.srisuk.computerrepair.data.request.LoginRequest
-import com.srisuk.computerrepair.data.response.HistoryResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
-import kotlinx.coroutines.selects.select
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -82,6 +82,18 @@ object DataSourceImpl : DataSource {
                 .select { Repair.user_id eq userId }
                 .andWhere { Users.user_id eq Repair.user_id }
                 .map { HistoryMap.toHistory(it) }
+        }
+    }
+    override fun devices(deiced: Int):List<DeviceModel>{
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            (Device)
+                .slice(
+                    Device.device_id,
+                    Device.device_code
+                )
+                .select { Device.device_id eq  deiced }
+                .map { DeviceMap.toDeviceMap(it) }
         }
     }
 

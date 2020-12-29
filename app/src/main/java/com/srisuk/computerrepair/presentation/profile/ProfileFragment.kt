@@ -1,6 +1,7 @@
-package com.srisuk.computerrepair
+package com.srisuk.computerrepair.presentation.profile
 
 import android.os.Bundle
+import com.srisuk.computerrepair.R
 import com.srisuk.computerrepair.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_profile.*
 
