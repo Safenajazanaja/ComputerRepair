@@ -6,7 +6,7 @@ import org.jetbrains.exposed.sql.ResultRow
 
 object DeviceMap {
     fun toDeviceMap(row: ResultRow)=DeviceModel(
-        device_id = row[Device.device_detail_id],
+        device_id = row[Device.device_id],
         device_code = row[Device.device_code],
 
     )

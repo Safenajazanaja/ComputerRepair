@@ -13,12 +13,11 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-//        val adt = DeviceAdapter(ba, dataSource as MutableList<DeviceModel>)
+        val adt = DeviceAdapter(requireContext(), dataSource.devices() as MutableList<DeviceModel>)
         bar_spinner_device.apply {
-            val device =dataSource.devices(1)
-
+            adapter = adt
         }
-        val data = dataSource.devices(1)
+//        val data = dataSource.devices()
 
 
 

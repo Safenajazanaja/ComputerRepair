@@ -84,15 +84,16 @@ object DataSourceImpl : DataSource {
                 .map { HistoryMap.toHistory(it) }
         }
     }
-    override fun devices(deiced: Int):List<DeviceModel>{
+    override fun devices():List<DeviceModel>{
         return transaction {
             addLogger(StdOutSqlLogger)
-            (Device)
+            Device
                 .slice(
                     Device.device_id,
                     Device.device_code
                 )
-                .select { Device.device_id eq  deiced }
+//                .select { Device.device_id eq  deiced }
+                .selectAll()
                 .map { DeviceMap.toDeviceMap(it) }
         }
     }

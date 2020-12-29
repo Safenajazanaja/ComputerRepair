@@ -11,5 +11,5 @@ interface DataSource {
     fun login(req: LoginRequest): LoginResponse
     fun profile(userId:Int): Profile
     fun history(userId:Int): List<History>
-    fun devices(deiced:Int):List<DeviceModel>
+    fun devices():List<DeviceModel>
 }
