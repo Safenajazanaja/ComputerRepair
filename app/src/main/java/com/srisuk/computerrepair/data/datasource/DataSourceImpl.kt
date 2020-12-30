@@ -3,10 +3,12 @@ package com.srisuk.computerrepair.data.datasource
 import com.srisuk.computerrepair.data.database.*
 import com.srisuk.computerrepair.data.map.DeviceMap
 import com.srisuk.computerrepair.data.map.HistoryMap
+import com.srisuk.computerrepair.data.map.MapObject
 import com.srisuk.computerrepair.data.map.ProfileMap
 import com.srisuk.computerrepair.data.models.DeviceModel
 import com.srisuk.computerrepair.data.models.History
 import com.srisuk.computerrepair.data.models.Profile
+import com.srisuk.computerrepair.data.models.Role
 import com.srisuk.computerrepair.data.request.LoginRequest
 import com.srisuk.computerrepair.data.response.LoginResponse
 import org.jetbrains.exposed.sql.*
@@ -23,18 +25,24 @@ object DataSourceImpl : DataSource {
         } else {
             val result = transaction {
                 addLogger(StdOutSqlLogger)
-
                 Users.select { Users.username eq req.username }
                     .andWhere { Users.password eq req.password }
                     .count()
                     .toInt()
-//                    .map { MapObject.toUser(it) }
-//                    .single()
             }
+
             if (result == 0) {
                 response.success = false
                 response.message = "Password incorrect"
             } else {
+                val userId = transaction {
+                    Users.select { Users.username eq req.username }
+                        .andWhere { Users.password eq req.password }
+                        .map { it[Users.user_id] }
+                        .single()
+                }
+
+                response.userId = userId
                 response.success = true
                 response.message = "Login success"
             }
@@ -55,14 +63,6 @@ object DataSourceImpl : DataSource {
                 )
                 .select { Users.user_id eq userId }
                 .map { ProfileMap.toProfile(it) }
-//                .map {row->
-//                    Profile(
-//                        userId = row[Users.userId],
-//                        name = row[Users.name],
-//                        telephone = row[Users.telephone],
-//                        agency_name = row[AgencyType.agency_name],
-//                    )
-//                }
                 .single()
         }
     }
@@ -97,5 +97,16 @@ object DataSourceImpl : DataSource {
                 .map { DeviceMap.toDeviceMap(it) }
         }
     }
-
+    override fun  checkrole(userId: Int): Role {
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            Users
+                .slice(
+                    Users.role_id,
+                )
+                .select { Users.user_id eq userId }
+                .map { MapObject.toUser(it) }
+                .single()
+        }
+    }
 }

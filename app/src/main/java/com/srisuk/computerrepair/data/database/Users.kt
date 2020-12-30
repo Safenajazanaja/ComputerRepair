@@ -5,7 +5,7 @@ import org.jetbrains.exposed.sql.Table
 object Users : Table("user") {
 
     val user_id = integer("user_id").autoIncrement()
-    val role_id = integer("role_id")
+    val role_id = integer("role_id").references(Role.role_id)
     val agency_id = integer("agency_id").references(Agency.agency_id)
     val room_id = integer("room_id").references(Room.room_id)
     val username = varchar("username", 50)

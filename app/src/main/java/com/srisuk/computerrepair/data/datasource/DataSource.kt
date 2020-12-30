@@ -3,8 +3,8 @@ package com.srisuk.computerrepair.data.datasource
 import com.srisuk.computerrepair.data.models.DeviceModel
 import com.srisuk.computerrepair.data.models.History
 import com.srisuk.computerrepair.data.models.Profile
+import com.srisuk.computerrepair.data.models.Role
 import com.srisuk.computerrepair.data.request.LoginRequest
-import com.srisuk.computerrepair.data.response.HistoryResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
 
 interface DataSource {
@@ -12,4 +12,5 @@ interface DataSource {
     fun profile(userId:Int): Profile
     fun history(userId:Int): List<History>
     fun devices():List<DeviceModel>
+    fun checkrole(userId:Int):Role
 }

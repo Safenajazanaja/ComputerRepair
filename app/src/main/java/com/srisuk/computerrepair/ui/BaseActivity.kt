@@ -23,4 +23,5 @@ abstract class BaseActivity:AppCompatActivity() {
             password = "1234",
         )
     }
+
 }

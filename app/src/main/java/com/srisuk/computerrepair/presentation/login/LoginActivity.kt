@@ -10,6 +10,7 @@ import com.srisuk.computerrepair.ui.BaseActivity
 import com.srisuk.computerrepair.ui.hideSoftKeyboard
 import com.srisuk.computerrepair.data.request.LoginRequest
 import com.srisuk.computerrepair.presentation.main.MainActivity
+import com.srisuk.computerrepair.toast
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
@@ -24,13 +25,19 @@ class LoginActivity : BaseActivity() {
             if (result.success){
                 // TODO: 12/10/2020 goto main
                 val preferences = getSharedPreferences("file", Context.MODE_PRIVATE)
-                result.userId?.let { it1 ->
+                result.userId?.let {
                     preferences.edit()
-                        .putInt("userId", it1)
+                        .putInt("userId", it)
                         .apply()
                 }
-                val intent = Intent(baseContext, MainActivity::class.java)
-                startActivity(intent);
+                startActivity(Intent(baseContext, MainActivity::class.java));
+//                Intent(baseContext, MainActivity::class.java).apply {
+//                    startActivity(this)
+//                }
+
+//                Intent(baseContext, MainActivity::class.java).also {
+//                    startActivity(it)
+//                }
 
             }else{
                 Toast.makeText(baseContext, "ตรวจสอบรหัสอีกครั้ง", Toast.LENGTH_SHORT).show()
@@ -39,7 +46,7 @@ class LoginActivity : BaseActivity() {
         root_Layout.setOnClickListener { hideSoftKeyboard() }
 
         val data = dataSource.profile(1)
-        Log.d(TAG, "onCreate: $data")
+
     }
 
     companion object{

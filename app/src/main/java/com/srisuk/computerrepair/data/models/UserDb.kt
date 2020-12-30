@@ -6,6 +6,6 @@ data class UserDb(
     val passWord:String,
     val name: String,
     val telephone:String,
-    val role:Int,
+    val role:Int?=null,
     val agency:Int
 )

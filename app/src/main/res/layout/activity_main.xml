@@ -9,18 +9,42 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation">
-
+        android:layout_height="wrap_content"
+        android:layout_above="@id/nav">
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/fragment_container2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     </FrameLayout>
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:background="#FFFF"
-        android:id="@+id/bottom_navigation"
+
+    <RelativeLayout
+        android:id="@+id/nav"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_navigation"/>
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFF"
+            android:visibility="gone"
+            app:menu="@menu/bottom_navigationv2" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:background="#FFFF"
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            app:menu="@menu/bottom_navigation"/>
+
+    </RelativeLayout>
+
+
+
 
 </RelativeLayout>
