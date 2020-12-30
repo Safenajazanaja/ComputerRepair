@@ -11,13 +11,13 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val profile = dataSource.profile(1)
-
-
-        tv_member.text = profile.userId.toString()
-        tv_full_name.text = profile.name
-        tv_agency.text = profile.agency_name
-        tv_phone.text = profile.telephone
+        val userId =context?.getSharedPreferences("file",
+            AppCompatActivity.MODE_PRIVATE)?.getInt("userId",0)
+        val profile = userId?.let { dataSource.profile(it) }
+        tv_member.text = profile?.userId.toString()
+        tv_full_name.text = profile?.name
+        tv_agency.text = profile?.agency_name
+        tv_phone.text = profile?.telephone
     }
 
 }

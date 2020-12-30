@@ -12,12 +12,10 @@ class HistoryAdapter : BaseRecyclerView<History>() {
 
     override fun View.onBindViewHolder(data: History) {
 
-        tv_dete.text = data.Date?.toString("yyyy-MM-dd")
+        tv_dete.text = data.Date?.toString("dd-MM-yyyy")
         tv_agency.text = data.Agency.toString()
         tv_room.text = data.Room.toString()
         tv_detail.text = data.Problem.toString()
         tv_name.text = data.Status.toString()
     }
 }
-
-//"yyyy-MM-dd"

@@ -12,6 +12,7 @@ abstract class BaseActivity:AppCompatActivity() {
     val dataSource: DataSource = DataSourceImpl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val userId =getSharedPreferences("file", AppCompatActivity.MODE_PRIVATE).getInt("userId",0)
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
         val host = "192.168.43.52"
         val databaseName = "repairdb"

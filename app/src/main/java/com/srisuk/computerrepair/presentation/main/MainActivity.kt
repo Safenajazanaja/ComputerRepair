@@ -19,10 +19,8 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val userId = getSharedPreferences("file", MODE_PRIVATE).getInt("userId",0)
         val role = dataSource.checkrole(userId);
-        toast("$role")
         if (role.role == 1) {
             bottom_navigation.setOnNavigationItemSelectedListener(navListener)
             bottom_navigation.visibility = VISIBLE

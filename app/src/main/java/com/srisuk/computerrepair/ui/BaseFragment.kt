@@ -3,6 +3,7 @@ package com.srisuk.computerrepair.ui
 import android.os.Bundle
 import android.os.StrictMode
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.srisuk.computerrepair.data.datasource.DataSource
 import com.srisuk.computerrepair.data.datasource.DataSourceImpl
@@ -14,6 +15,7 @@ abstract class BaseFragment(@LayoutRes layout: Int) : Fragment(layout) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val userId =context?.getSharedPreferences("file", AppCompatActivity.MODE_PRIVATE)?.getInt("userId",0)
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
         val host = "192.168.43.52"
         val databaseName = "repairdb"
