@@ -1,8 +1,6 @@
 package com.srisuk.computerrepair.ui
 
 import android.content.Context
-import android.os.Bundle
-import android.os.StrictMode
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +8,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.annotation.LayoutRes
-import org.jetbrains.exposed.sql.Database
 
 abstract class BaseSpinner<T>(
     context: Context,
@@ -53,5 +50,4 @@ fun <T> Spinner.onItemSelected(item: (T) -> Unit) {
             item.invoke(model)
         }
     }
-
 }

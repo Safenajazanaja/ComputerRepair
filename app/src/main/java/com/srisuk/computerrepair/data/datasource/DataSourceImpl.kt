@@ -1,13 +1,8 @@
 package com.srisuk.computerrepair.data.datasource
 
 import com.srisuk.computerrepair.data.database.*
-import com.srisuk.computerrepair.data.map.DeviceMap
-import com.srisuk.computerrepair.data.map.HistoryMap
-import com.srisuk.computerrepair.data.map.MapObject
-import com.srisuk.computerrepair.data.map.ProfileMap
-import com.srisuk.computerrepair.data.models.DeviceModel
-import com.srisuk.computerrepair.data.models.History
-import com.srisuk.computerrepair.data.models.Profile
+import com.srisuk.computerrepair.data.map.*
+import com.srisuk.computerrepair.data.models.*
 import com.srisuk.computerrepair.data.models.Role
 import com.srisuk.computerrepair.data.request.LoginRequest
 import com.srisuk.computerrepair.data.response.LoginResponse
@@ -84,16 +79,15 @@ object DataSourceImpl : DataSource {
                 .map { HistoryMap.toHistory(it) }
         }
     }
-    override fun devices():List<DeviceModel>{
+    override fun devices(roomId:Int):List<DeviceModel>{
         return transaction {
             addLogger(StdOutSqlLogger)
-            Device
+            (Device innerJoin Room)
                 .slice(
                     Device.device_id,
                     Device.device_code
                 )
-//                .select { Device.device_id eq  deiced }
-                .selectAll()
+                .select { Device.room_id eq  roomId }
                 .map { DeviceMap.toDeviceMap(it) }
         }
     }
@@ -109,4 +103,13 @@ object DataSourceImpl : DataSource {
                 .single()
         }
     }
+
+   override fun roomdevice():List<RoomDeviceModel>{
+       return transaction {
+           addLogger(StdOutSqlLogger)
+              Room
+                  .selectAll()
+                  .map { RoomDeviceMap.toRoomDevice(it) }
+       }
+   }
 }
