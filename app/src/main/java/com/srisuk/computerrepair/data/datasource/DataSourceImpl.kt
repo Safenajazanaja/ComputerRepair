@@ -82,7 +82,7 @@ object DataSourceImpl : DataSource {
     override fun devices(roomId:Int):List<DeviceModel>{
         return transaction {
             addLogger(StdOutSqlLogger)
-            (Device innerJoin Room)
+            (Device innerJoin Room )
                 .slice(
                     Device.device_id,
                     Device.device_code
@@ -112,4 +112,24 @@ object DataSourceImpl : DataSource {
                   .map { RoomDeviceMap.toRoomDevice(it) }
        }
    }
+    override fun problemdetail():List<ProblemDetailModel>{
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            Problem
+                .selectAll()
+                .map { ProblemDetailMap.toProblemDetailMap(it) }
+        }
+    }
+    override fun devicedetail(deviceId:Int):List<DeviceDetailModel>{
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            (DeviceDetail innerJoin Device)
+                .slice(
+                    DeviceDetail.device_detail_id,
+                    DeviceDetail.device_detail_name
+                )
+                .select { Device.device_id eq deviceId }
+                .map { DeviceDetailMap.toDeviceDetail(it) }
+        }
+    }
 }

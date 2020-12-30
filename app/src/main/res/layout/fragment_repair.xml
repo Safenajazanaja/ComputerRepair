@@ -37,28 +37,27 @@
             style="@style/not"
             android:background="@drawable/custorm_input"
             android:id="@+id/bar_spinner_room"
-            android:textAlignment="center"
-            />
+            android:textAlignment="center" />
 
         <Spinner
+            style="@style/not"
+            android:background="@drawable/custorm_input"
             android:id="@+id/bar_spinner_device"
-            android:textAlignment="center"
-            style="@style/not"
-            android:background="@drawable/custorm_input" />
+            android:textAlignment="center" />
 
 
         <Spinner
+            android:id="@+id/bar_spinner_device_name"
             android:background="@drawable/custorm_input"
-            android:id="@+id/bar_spinner3"
             style="@style/not"
-            android:padding="20dp" />
+            android:textAlignment="center" />
 
 
         <Spinner
+            android:id="@+id/bar_spinner_problem"
             android:background="@drawable/custorm_input"
-            android:id="@+id/bar_spinner4"
             style="@style/not"
-            android:padding="20dp" />
+            android:textAlignment="center"  />
 
         <LinearLayout
             android:padding="30dp"
