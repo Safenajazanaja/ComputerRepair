@@ -4,11 +4,11 @@ import android.view.View
 import com.srisuk.computerrepair.R
 import com.srisuk.computerrepair.data.models.History
 import com.srisuk.computerrepair.ui.BaseRecyclerView
-import kotlinx.android.synthetic.main.item.view.*
+import kotlinx.android.synthetic.main.item_history.view.*
 
 class HistoryAdapter : BaseRecyclerView<History>() {
 
-    override fun getLayout(): Int = R.layout.item
+    override fun getLayout(): Int = R.layout.item_history
 
     override fun View.onBindViewHolder(data: History) {
 

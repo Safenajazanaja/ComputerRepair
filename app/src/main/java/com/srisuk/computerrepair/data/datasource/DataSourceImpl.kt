@@ -4,10 +4,13 @@ import com.srisuk.computerrepair.data.database.*
 import com.srisuk.computerrepair.data.map.*
 import com.srisuk.computerrepair.data.models.*
 import com.srisuk.computerrepair.data.models.Role
+import com.srisuk.computerrepair.data.request.InsertRepairRequest
 import com.srisuk.computerrepair.data.request.LoginRequest
+import com.srisuk.computerrepair.data.response.BaseResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.joda.time.DateTime
 
 object DataSourceImpl : DataSource {
     override fun login(req: LoginRequest): LoginResponse {
@@ -65,7 +68,7 @@ object DataSourceImpl : DataSource {
     override fun history(userId: Int): List<History> {
         return transaction {
             addLogger(StdOutSqlLogger)
-            (Repair innerJoin Users innerJoin Agency innerJoin Room innerJoin Problem innerJoin Status )
+            (Repair innerJoin Users innerJoin Agency innerJoin Room innerJoin Problem innerJoin Status)
                 .slice(
 
                     Repair.repair_date,
@@ -79,19 +82,34 @@ object DataSourceImpl : DataSource {
                 .map { HistoryMap.toHistory(it) }
         }
     }
-    override fun devices(roomId:Int):List<DeviceModel>{
+
+    override fun checkagency(userId: Int): AgencyNameModel {
         return transaction {
             addLogger(StdOutSqlLogger)
-            (Device innerJoin Room )
+            (Users innerJoin Agency)
+                .slice(
+                    Agency.agency_name
+                )
+                .select { Users.user_id eq userId }
+                .map { AgencyMap.toAgencyMap(it) }
+                .single()
+        }
+    }
+
+    override fun devices(roomId: Int): List<DeviceModel> {
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            (Device innerJoin Room)
                 .slice(
                     Device.device_id,
                     Device.device_code
                 )
-                .select { Device.room_id eq  roomId }
+                .select { Device.room_id eq roomId }
                 .map { DeviceMap.toDeviceMap(it) }
         }
     }
-    override fun  checkrole(userId: Int): Role {
+
+    override fun checkrole(userId: Int): Role {
         return transaction {
             addLogger(StdOutSqlLogger)
             Users
@@ -104,15 +122,16 @@ object DataSourceImpl : DataSource {
         }
     }
 
-   override fun roomdevice():List<RoomDeviceModel>{
-       return transaction {
-           addLogger(StdOutSqlLogger)
-              Room
-                  .selectAll()
-                  .map { RoomDeviceMap.toRoomDevice(it) }
-       }
-   }
-    override fun problemdetail():List<ProblemDetailModel>{
+    override fun roomdevice(): List<RoomDeviceModel> {
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            Room
+                .selectAll()
+                .map { RoomDeviceMap.toRoomDevice(it) }
+        }
+    }
+
+    override fun problemdetail(): List<ProblemDetailModel> {
         return transaction {
             addLogger(StdOutSqlLogger)
             Problem
@@ -120,7 +139,8 @@ object DataSourceImpl : DataSource {
                 .map { ProblemDetailMap.toProblemDetailMap(it) }
         }
     }
-    override fun devicedetail(deviceId:Int):List<DeviceDetailModel>{
+
+    override fun devicedetail(deviceId: Int): List<DeviceDetailModel> {
         return transaction {
             addLogger(StdOutSqlLogger)
             (DeviceDetail innerJoin Device)
@@ -131,5 +151,28 @@ object DataSourceImpl : DataSource {
                 .select { Device.device_id eq deviceId }
                 .map { DeviceDetailMap.toDeviceDetail(it) }
         }
+    }
+
+    override fun insertRepair(req: InsertRepairRequest): BaseResponse {
+        val response = BaseResponse()
+
+        val statement = transaction {
+            addLogger(StdOutSqlLogger)
+
+            Repair.insert {
+                it[user_id] = req.user_id
+                it[problem_id] = req.problem_id
+                it[status_id] = 2
+                it[repair_date] = DateTime.now()
+                it[detail] = req.detail.toString()
+                it[device_id]=req.device_id
+            }
+
+        }
+        val result = statement.resultedValues?.size == 1
+        response.success = result
+        response.message = "Insert success"
+
+        return response
     }
 }
