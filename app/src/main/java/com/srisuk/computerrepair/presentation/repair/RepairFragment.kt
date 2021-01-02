@@ -15,6 +15,7 @@ import com.srisuk.computerrepair.data.request.LoginRequest
 import com.srisuk.computerrepair.ui.BaseFragment
 import com.srisuk.computerrepair.ui.onItemSelected
 import kotlinx.android.synthetic.main.fragment_repair.*
+import org.joda.time.DateTime
 
 
 class RepairFragment : BaseFragment(R.layout.fragment_repair) {
@@ -23,6 +24,8 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
     private lateinit var devicename:DeviceDetailModel
     private lateinit var problem:ProblemDetailModel
     private var problemId: Int? = null
+    private var roomId: Int? = null
+    private var deviceId: Int? = null
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val userId =context?.getSharedPreferences("file",
@@ -32,14 +35,16 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
         val agency = userId?.let { dataSource.checkagency(it) }
         tv_agency_name.text=agency?.agency_name
         btn_repair.setOnClickListener {
-            Toast.makeText(context, "", Toast.LENGTH_SHORT).show()
-            Log.d(TAG, "onActivityCreated: $problemId")
-//            val problem_id =problem.problemId
-//            val roomId = room.roomId
-//            val device_code =device.device_id
-//            val detail = edt_detail.text.toString()
-//            val req =InsertRepairRequest()
-
+           val detail = edt_detail.text.toString()
+            val req =InsertRepairRequest(user_id = userId,employee_id = null,problem_id = problemId,status_id = 2
+                ,repair_date = DateTime.now(),detail,test_result = null, device_id =  deviceId)
+         val result =  dataSource.insertRepair(req)
+            if (result.success){
+                Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
+            } else{
+            Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
+        }
+            Log.d(TAG, "onActivityCreated: $req")
         }
 
     }
@@ -59,7 +64,8 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
             requireContext(), list)
         bar_spinner_room.onItemSelected<RoomDeviceModel> {
             room = it
-            it.roomId?.let { it1 -> setSpinnerAddressDevice(it1) }
+            roomId=it.roomId
+            roomId?.let { it1 -> setSpinnerAddressDevice(it1) }
         }
     }
 
@@ -69,7 +75,8 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
             requireContext(),list)
         bar_spinner_device.onItemSelected<DeviceModel> {
             device = it
-            it.device_id?.let { it1 -> setSpinnerAddressDeviceName(it1) }
+            deviceId= it.device_id
+            deviceId?.let { it1 -> setSpinnerAddressDeviceName(it1) }
         }
     }
     private fun setSpinnerAddressDeviceName(deviceId:Int) {

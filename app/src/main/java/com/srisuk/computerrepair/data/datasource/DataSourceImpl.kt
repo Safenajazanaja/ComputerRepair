@@ -160,19 +160,18 @@ object DataSourceImpl : DataSource {
             addLogger(StdOutSqlLogger)
 
             Repair.insert {
-                it[user_id] = req.user_id
-                it[problem_id] = req.problem_id
+                it[user_id] = req.user_id.toString().toInt()
+                it[problem_id] = req.problem_id.toString().toInt()
                 it[status_id] = 2
                 it[repair_date] = DateTime.now()
                 it[detail] = req.detail.toString()
-                it[device_id]=req.device_id
+                it[device_id]=req.device_id.toString().toInt()
             }
 
         }
         val result = statement.resultedValues?.size == 1
         response.success = result
         response.message = "Insert success"
-
         return response
     }
 }
