@@ -1,6 +1,9 @@
 package com.srisuk.computerrepair.presentation.repair
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.srisuk.computerrepair.R
 import com.srisuk.computerrepair.data.models.DeviceDetailModel
@@ -19,6 +22,7 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
     private lateinit var device: DeviceModel
     private lateinit var devicename:DeviceDetailModel
     private lateinit var problem:ProblemDetailModel
+    private var problemId: Int? = null
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val userId =context?.getSharedPreferences("file",
@@ -27,14 +31,16 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
         setSpinnerProblem()
         val agency = userId?.let { dataSource.checkagency(it) }
         tv_agency_name.text=agency?.agency_name
-//        btn_repair.setOnClickListener {
+        btn_repair.setOnClickListener {
+            Toast.makeText(context, "", Toast.LENGTH_SHORT).show()
+            Log.d(TAG, "onActivityCreated: $problemId")
 //            val problem_id =problem.problemId
 //            val roomId = room.roomId
 //            val device_code =device.device_id
 //            val detail = edt_detail.text.toString()
 //            val req =InsertRepairRequest()
-//
-//        }
+
+        }
 
     }
     private fun setSpinnerProblem(){
@@ -42,6 +48,7 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
         bar_spinner_problem.adapter=ProblemAdapter(requireContext(),list)
         bar_spinner_problem.onItemSelected<ProblemDetailModel>{
             problem =it
+            problemId = it.problemId
 
         }
     }
