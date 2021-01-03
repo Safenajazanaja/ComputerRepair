@@ -14,7 +14,7 @@ abstract class BaseActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val userId =getSharedPreferences("file", AppCompatActivity.MODE_PRIVATE).getInt("userId",0)
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
-        val host = "192.168.0.200"
+        val host = "192.168.43.52"
         val databaseName = "repairdb"
         val url = "jdbc:mysql://$host:3306/$databaseName?useUnicode=true&characterEncoding=utf-8"
         Database.connect(
