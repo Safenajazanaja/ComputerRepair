@@ -1,17 +1,14 @@
 package com.srisuk.computerrepair.presentation.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.*
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.srisuk.computerrepair.GetJobFragment
+import com.srisuk.computerrepair.presentation.job.GetJobFragment
 import com.srisuk.computerrepair.R
-import com.srisuk.computerrepair.data.database.Users
 import com.srisuk.computerrepair.presentation.repair.RepairFragment
 import com.srisuk.computerrepair.presentation.history.HistoryFragment
 import com.srisuk.computerrepair.presentation.profile.ProfileFragment
-import com.srisuk.computerrepair.toast
 import com.srisuk.computerrepair.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 

@@ -65,23 +65,7 @@ object DataSourceImpl : DataSource {
         }
     }
 
-    override fun history(userId: Int): List<History> {
-        return transaction {
-            addLogger(StdOutSqlLogger)
-            (Repair innerJoin Users innerJoin Agency innerJoin Room innerJoin Problem innerJoin Status)
-                .slice(
 
-                    Repair.repair_date,
-                    Agency.agency_name,
-                    Room.room_number,
-                    Problem.problem_name,
-                    Status.status_name
-                )
-                .select { Repair.user_id eq userId }
-                .andWhere { Users.user_id eq Repair.user_id }
-                .map { HistoryMap.toHistory(it) }
-        }
-    }
 
     override fun checkagency(userId: Int): AgencyNameModel {
         return transaction {
@@ -174,4 +158,40 @@ object DataSourceImpl : DataSource {
         response.message = "Insert success"
         return response
     }
+    override fun history(userId: Int): List<History> {
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            (Repair innerJoin Users innerJoin Agency innerJoin Room innerJoin Problem innerJoin Status)
+                .slice(
+
+                    Repair.repair_date,
+                    Agency.agency_name,
+                    Room.room_number,
+                    Problem.problem_name,
+                    Status.status_name
+                )
+                .select { Repair.user_id eq userId }
+                .andWhere { Users.user_id eq Repair.user_id }
+                .map { HistoryMap.toHistory(it) }
+        }
+    }
+     override fun getjob():List<GetJobModel>{
+         return  transaction {
+             addLogger(StdOutSqlLogger)
+             (Repair innerJoin Problem innerJoin Users innerJoin Agency innerJoin Room)
+                 .slice(
+                     Repair.repair_date,
+                     Agency.agency_name,
+                     Room.room_number,
+                     Problem.problem_name,
+                     Repair.repair_id
+                 )
+                 .select { Repair.user_id eq Users.user_id  }
+                 .map { GetJobMap.toGetJob(it) }
+         }
+     }
+
+
+
+
 }

@@ -17,4 +17,5 @@ interface DataSource {
     fun devicedetail(deviceId:Int):List<DeviceDetailModel>
     fun checkagency(userId: Int):AgencyNameModel
     fun insertRepair(req: InsertRepairRequest): BaseResponse
+    fun getjob():List<GetJobModel>
 }

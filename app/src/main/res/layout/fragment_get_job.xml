@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
 
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -8,93 +9,20 @@
     android:padding="30dp"
     android:layout_gravity="center">
 
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
-
-        <TextView
-            style="@style/TextViewLargeApplicationSub"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:text="ห้อง : "
-            android:textSize="55dp" />
-    </LinearLayout>
-
-
     <TextView
-        android:id="@+id/tv_dete"
-        style="@style/TextViewLargeApplicationSub"
-        android:padding="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="วันที่แจ้งซ่อม"
-        android:textSize="25dp"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:orientation="horizontal"
-        android:padding="15dp">
-
-        <TextView
-            android:id="@+id/tv_detail"
-            style="@style/TextViewLargeApplicationSub"
-            android:layout_gravity="left"
-            android:layout_width="0dp"
-            android:layout_height="49dp"
-            android:layout_weight="1"
-            android:text="อารการที่เสีย : "
-            android:textSize="25dp" />
-    </LinearLayout>
-
-
-
-
-    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:errorEnabled="true"
-        android:padding="15dp">
+        android:text="รับงาน"
+        android:gravity="center"
+        android:textSize="40dp" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/til_test_result"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="อาการที่ตรวจเจอ" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_job"
+        android:clipToPadding="false"
+       android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_job" />
 
-    <RadioButton
-        android:id="@+id/red"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ดำเนินการเรียบร้อย" />
-
-    <RadioButton
-        android:id="@+id/green"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="รอเปลี่ยนอะไหล่" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="15dp">
-
-        <Button
-            android:id="@+id/Bt_ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="บันทึก" />
-        <Button
-            android:id="@+id/bt_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ยกเลิก" />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
