@@ -1,10 +1,10 @@
 package com.srisuk.computerrepair.presentation.repair
 
-import android.content.ContentValues.TAG
+
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.srisuk.computerrepair.ConfirmRepairActivity
 import com.srisuk.computerrepair.R
 import com.srisuk.computerrepair.data.models.DeviceDetailModel
 import com.srisuk.computerrepair.data.models.DeviceModel
@@ -23,9 +23,15 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
     private lateinit var device: DeviceModel
     private lateinit var devicename:DeviceDetailModel
     private lateinit var problem:ProblemDetailModel
+    private var problemName:String?=null
+    var req: InsertRepairRequest? = null
+    private var code:String?=null
+    private var roomnumber:String?=null
+    private var namecode:String?=null
     private var problemId: Int? = null
     private var roomId: Int? = null
     private var deviceId: Int? = null
+    private var detail : String? =null
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val userId =context?.getSharedPreferences("file",
@@ -34,17 +40,24 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
         setSpinnerProblem()
         val agency = userId?.let { dataSource.checkagency(it) }
         tv_agency_name.text=agency?.agency_name
+         detail = edt_detail.text.toString().trim()
+        req =InsertRepairRequest(user_id = userId,employee_id = null,problem_id = problemId,status_id = 2
+            ,repair_date = DateTime.now(),detail,test_result = null, device_id =  deviceId)
         btn_repair.setOnClickListener {
-           val detail = edt_detail.text.toString()
-            val req =InsertRepairRequest(user_id = userId,employee_id = null,problem_id = problemId,status_id = 2
-                ,repair_date = DateTime.now(),detail,test_result = null, device_id =  deviceId)
-         val result =  dataSource.insertRepair(req)
-            if (result.success){
-                Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
-            } else{
-            Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
-        }
-            Log.d(TAG, "onActivityCreated: $req")
+            val intent = Intent(context, ConfirmRepairActivity::class.java).apply {
+                putExtra("user_id",req?.user_id)
+                putExtra("employee_id",req?.employee_id)
+                putExtra("problem_id",problemId)
+                putExtra("status_id",2)
+                putExtra("repair_date",DateTime.now())
+                putExtra("detail",detail)
+                putExtra("device_id",deviceId)
+                putExtra("problemName",problemName)
+                putExtra("code",code)
+                putExtra("roomnumber",roomnumber)
+                putExtra("namecode",namecode)
+            }
+            startActivity(intent)
         }
 
     }
@@ -54,6 +67,7 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
         bar_spinner_problem.onItemSelected<ProblemDetailModel>{
             problem =it
             problemId = it.problemId
+            problemName=it.problem_name
 
         }
     }
@@ -65,6 +79,7 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
         bar_spinner_room.onItemSelected<RoomDeviceModel> {
             room = it
             roomId=it.roomId
+            roomnumber=it.roomNumber
             roomId?.let { it1 -> setSpinnerAddressDevice(it1) }
         }
     }
@@ -76,6 +91,7 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
         bar_spinner_device.onItemSelected<DeviceModel> {
             device = it
             deviceId= it.device_id
+            code=it.device_code
             deviceId?.let { it1 -> setSpinnerAddressDeviceName(it1) }
         }
     }
@@ -86,6 +102,7 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
         )
         bar_spinner_device_name.onItemSelected<DeviceDetailModel> {
             devicename = it
+            namecode =it.device_detail_name
         }
     }
 

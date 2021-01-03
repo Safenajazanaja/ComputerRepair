@@ -30,7 +30,7 @@ class LoginActivity : BaseActivity() {
                         .putInt("userId", it)
                         .apply()
                 }
-                startActivity(Intent(baseContext, MainActivity::class.java));
+                startActivity(Intent(baseContext, MainActivity::class.java))
 //                Intent(baseContext, MainActivity::class.java).apply {
 //                    startActivity(this)
 //                }
