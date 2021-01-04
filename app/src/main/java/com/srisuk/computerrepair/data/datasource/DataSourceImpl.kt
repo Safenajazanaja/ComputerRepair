@@ -187,6 +187,7 @@ object DataSourceImpl : DataSource {
                      Repair.repair_id
                  )
                  .select { Repair.user_id eq Users.user_id  }
+                 .andWhere { Repair.employee_id eq 0 }
                  .map { GetJobMap.toGetJob(it) }
          }
      }
