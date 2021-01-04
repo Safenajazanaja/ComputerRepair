@@ -2,27 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
-    android:layout_gravity="center">
+    android:gravity="center_horizontal">
 
     <TextView
         android:id="@+id/title"
+        android:layout_marginTop="32dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="รับงาน"
         android:gravity="center"
-        android:textSize="40dp" />
+        android:textSize="30dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_job"
         android:clipToPadding="false"
+        android:padding="15dp"
        android:layout_below="@id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         tools:listitem="@layout/item_job" />
 
 </RelativeLayout>
