@@ -20,13 +20,12 @@
             android:layout_gravity="center"
             android:text="ประวัติการใช้งาน"
             android:textSize="30dp"
-            android:textStyle="italic"
-            />
+            android:textStyle="italic" />
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/relativeLayout"
+        android:layout_below="@+id/relativeLayout"
         android:orientation="horizontal"
         android:gravity="center_horizontal"
         android:id="@+id/linearlayout">
@@ -41,8 +40,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
+        android:padding="15dp"
         android:clipToPadding="false"
-        android:layout_below="@id/linearlayout"
+        android:layout_below="@+id/linearlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_history" />
