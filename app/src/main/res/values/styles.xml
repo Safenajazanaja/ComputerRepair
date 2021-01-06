@@ -298,6 +298,13 @@
         <item name="counterEnabled">true</item>
         <item name="counterMaxLength">6</item>
     </style>
+
+    <style name="StyleTextInputLayoutV2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="errorEnabled">true</item>
+        <item name="counterEnabled">true</item>
+    </style>
     <style name="StyleTextInputLayout2">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

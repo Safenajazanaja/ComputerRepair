@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="20dp">
-            <com.google.android.material.textfield.TextInputLayout style="@style/StyleTextInputLayout">
+            <com.google.android.material.textfield.TextInputLayout style="@style/StyleTextInputLayoutV2">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_detail"
