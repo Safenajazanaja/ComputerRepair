@@ -22,58 +22,99 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_agency_name"
-            style="@style/not"
-            android:background="@drawable/custorm_input"
-            android:gravity="center"
-            android:hint="หน่วยงาน" />
-
-        <Spinner
-            style="@style/not"
-            android:background="@drawable/custorm_input"
-            android:id="@+id/bar_spinner_room"
-            android:textAlignment="center" />
-
-        <Spinner
-            style="@style/not"
-            android:background="@drawable/custorm_input"
-            android:id="@+id/bar_spinner_device"
-            android:textAlignment="center" />
-
-
-        <Spinner
-            android:id="@+id/bar_spinner_device_name"
-            android:background="@drawable/custorm_input"
-            style="@style/not"
-            android:textAlignment="center" />
-
-
-        <Spinner
-            android:id="@+id/bar_spinner_problem"
-            android:background="@drawable/custorm_input"
-            style="@style/not"
-            android:textAlignment="center"  />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <LinearLayout
-            android:padding="30dp"
+            style="@style/MatchWrap"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/MatchWrap"
+                android:text="หน่วยงาน" />
+
+            <TextView
+               android:gravity="center"
+                android:id="@+id/tv_agency_name"
+                style="@style/EditTextInputNoT"
+                android:hint="หน่วยงาน" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/MatchWrap"
+                android:text="เลขห้อง" />
+
+            <Spinner
+                android:id="@+id/bar_spinner_room"
+                style="@style/EditTextInputNoT"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/MatchWrap"
+                android:text="โค้ดอุปกรณ์" />
+
+            <Spinner
+                android:id="@+id/bar_spinner_device"
+                style="@style/EditTextInputNoT"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/MatchWrap"
+                android:text="ชื่ออุปกรณ์" />
+
+            <Spinner
+                android:id="@+id/bar_spinner_device_name"
+                style="@style/EditTextInputNoT"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/MatchWrap"
+                android:text="ปัญหาที่พบ" />
+
+            <Spinner
+                android:id="@+id/bar_spinner_problem"
+                style="@style/EditTextInputNoT"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:padding="20dp">
+            <com.google.android.material.textfield.TextInputLayout style="@style/StyleTextInputLayout">
 
-            <EditText
-                android:id="@+id/edt_detail"
-                style="@style/not"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/custorm_input"
-                android:gravity="start"
-                android:hint="รายละเอียด" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_detail"
+                    style="@style/EditTextInputV2"
+                    android:gravity="start"
+                    android:hint="รายละเอียด"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -81,9 +122,9 @@
             android:id="@+id/btn_repair"
             style="@style/not"
             android:layout_gravity="center"
-            android:textColor="#8F2F2F"
             android:background="@drawable/custorm_input"
-            android:text="แจ้งซ่อม" />
+            android:text="แจ้งซ่อม"
+            android:textColor="#8F2F2F" />
 
     </LinearLayout>
 
