@@ -39,8 +39,7 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
         setSpinnerAddressRoom()
         setSpinnerProblem()
         val agency = userId?.let { dataSource.checkagency(it) }
-        tv_agency_name.text=agency?.agency_name
-         detail = edt_detail.text.toString().trim()
+        tv_agency_name.text=agency?.agency_name.toString().trim()
         req =InsertRepairRequest(user_id = userId,employee_id = null,problem_id = problemId,status_id = 2
             ,repair_date = DateTime.now(),detail,test_result = null, device_id =  deviceId)
         btn_repair.setOnClickListener {
@@ -50,7 +49,7 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
                 putExtra("problem_id",problemId)
                 putExtra("status_id",2)
                 putExtra("repair_date",DateTime.now())
-                putExtra("detail",detail)
+                putExtra("detail",edt_detail.text.toString().trim())
                 putExtra("device_id",deviceId)
                 putExtra("problemName",problemName)
                 putExtra("code",code)
