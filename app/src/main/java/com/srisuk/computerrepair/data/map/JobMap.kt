@@ -5,17 +5,22 @@ import com.srisuk.computerrepair.data.database.Problem
 import com.srisuk.computerrepair.data.database.Repair
 import com.srisuk.computerrepair.data.database.Room
 import com.srisuk.computerrepair.data.models.GetJobModel
+import com.srisuk.computerrepair.data.models.JobModel
 import org.jetbrains.exposed.sql.ResultRow
-import org.jetbrains.exposed.sql.jodatime.datetime
 
-object GetJobMap {
-    fun toGetJob(row:ResultRow)=GetJobModel(
+object JobMap {
+    fun toJob(row:ResultRow)=JobModel(
         date_job = row[Repair.repair_date],
         agency_job = row[Agency.agency_name],
         room_job =  row[Room.room_number],
         problem_job =  row[Problem.problem_name],
-        repair_job=row[Repair.repair_id]
-
+        repair_id=row[Repair.repair_id]
+    )
+    fun toGetJob(row: ResultRow)=GetJobModel(
+        date_job = row[Repair.repair_date],
+        agency_job = row[Agency.agency_name],
+        room_job =  row[Room.room_number],
+        problem_job =  row[Problem.problem_name],
     )
 
 }

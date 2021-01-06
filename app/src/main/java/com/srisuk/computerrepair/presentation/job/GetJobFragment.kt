@@ -21,10 +21,12 @@ class GetJobFragment : BaseFragment(R.layout.fragment_get_job) {
            val data =dataSource.getjob()
         adt.setList(data)
         adt.onClick ={
-            val intent = Intent(context, GetJobActivity::class.java).apply {
-                val repair_job = it.repair_job
+            val intent = Intent(context, TestResultActivity::class.java).apply {
+                val repair_job = it.repair_id
                 Log.d(TAG, "onActivityCreated:$repair_job ")
-                putExtra("repair_job",it.repair_job)
+                putExtra("repair_job",it.repair_id)
+
+
             }
             startActivity(intent)
         }

@@ -176,7 +176,7 @@ object DataSourceImpl : DataSource {
                 .map { HistoryMap.toHistory(it) }
         }
     }
-     override fun getjob():List<GetJobModel>{
+     override fun getjob():List<JobModel>{
          return  transaction {
              addLogger(StdOutSqlLogger)
              (Repair innerJoin Problem innerJoin Users innerJoin Agency innerJoin Room)
@@ -189,11 +189,27 @@ object DataSourceImpl : DataSource {
                  )
                  .select { Repair.user_id eq Users.user_id  }
                  .andWhere { Repair.employee_id eq 0 }
-                 .map { GetJobMap.toGetJob(it) }
+                 .map { JobMap.toJob(it) }
          }
      }
 
+    override fun SelectGetJob(repair_id: Int):GetJobModel {
 
+        return  transaction {
+            addLogger(StdOutSqlLogger)
+            (Repair innerJoin Problem innerJoin Users innerJoin Agency innerJoin Room)
+                .slice(
+                    Repair.repair_date,
+                    Agency.agency_name,
+                    Room.room_number,
+                    Problem.problem_name,
+                )
+                .select { Repair.repair_id eq repair_id  }
+                .map { JobMap.toGetJob(it) }
+                .single()
 
+        }
 
+    }
 }
+

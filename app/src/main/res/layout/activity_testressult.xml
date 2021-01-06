@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:text="ห้อง : "
         android:textStyle="bold"
-        android:textSize="30dp" />
+        android:textSize="30dp"
+        android:id="@+id/tv_room_get"/>
     <androidx.cardview.widget.CardView
        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
@@ -30,7 +31,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
         <TextView
-            android:id="@+id/tv_dete"
+            android:id="@+id/tv_dete_get"
             android:layout_gravity="left"
             style="@style/TextViewLargeApplicationSub"
             android:layout_width="wrap_content"
@@ -39,7 +40,7 @@
             android:textSize="25dp"/>
 
             <TextView
-                android:id="@+id/tv_detail"
+                android:id="@+id/tv_detail_get"
                 style="@style/TextViewLargeApplicationSub"
                 android:layout_gravity="left"
                 android:text="อารการที่เสีย : "
@@ -48,18 +49,17 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:errorEnabled="true"
-                android:padding="15dp">
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/til_test_result"
+                    android:id="@+id/til_test_result_get"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="อาการที่ตรวจเจอ" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <RadioButton
-                android:id="@+id/red"
+                android:id="@+id/red_get"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ดำเนินการเรียบร้อย" />
@@ -67,7 +67,7 @@
 
 
             <RadioButton
-                android:id="@+id/green"
+                android:id="@+id/green_get"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="รอเปลี่ยนอะไหล่" />
@@ -87,14 +87,14 @@
 
         <Button
             style="@style/not"
-            android:id="@+id/Bt_ok"
+            android:id="@+id/Bt_ok_get"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/custorm_input"
             android:text="บันทึก" />
         <Button
             style="@style/not"
-            android:id="@+id/bt_cancel"
+            android:id="@+id/bt_cancel_get"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/custorm_input"

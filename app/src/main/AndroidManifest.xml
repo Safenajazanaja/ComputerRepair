@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComputerRepair">
         <activity android:name=".ConfirmRepairActivity"></activity>
-        <activity android:name=".presentation.job.GetJobActivity" />
+        <activity android:name=".presentation.job.TestResultActivity" />
         <activity android:name=".presentation.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
