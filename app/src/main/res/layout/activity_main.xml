@@ -32,9 +32,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:layout_margin="8dp"
-            app:labelVisibilityMode="labeled"
             android:background="@drawable/shape_navigation"
-            android:layout_alignParentBottom="true"
             app:menu="@menu/bottom_navigationv2" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -44,8 +42,6 @@
             android:visibility="gone"
             android:layout_margin="8dp"
             android:background="@drawable/shape_navigation"
-            app:labelVisibilityMode="labeled"
-            android:layout_alignParentBottom="true"
             android:layout_height="wrap_content"
             app:menu="@menu/bottom_navigation"/>
 
