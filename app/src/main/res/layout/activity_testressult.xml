@@ -8,77 +8,137 @@
     android:layout_gravity="center"
     android:background="@drawable/bg">
 
-    <TextView
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ห้อง : "
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:id="@+id/tv_room_get"/>
-    <androidx.cardview.widget.CardView
-       android:layout_marginTop="20dp"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
-        app:contentPadding="16dp">
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+
+
         <TextView
-            android:id="@+id/tv_dete_get"
-            android:layout_gravity="left"
-            style="@style/TextViewLargeApplicationSub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="วันที่แจ้งซ่อม"
-            android:textSize="25dp"/>
+            android:layout_gravity="center"
+            android:text="ห้อง : "
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_detail_get"
-                style="@style/TextViewLargeApplicationSub"
-                android:layout_gravity="left"
-                android:text="อารการที่เสีย : "
-                android:textSize="25dp" />
+        <TextView
+            android:id="@+id/tv_room_get"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <Button
+            style="@style/not"
+            android:id="@+id/Bt_getjob"
+            android:visibility="gone"
+            android:background="@drawable/custorm_input"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:text="รับงาน"/>
+
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="9dp"
+        app:cardElevation="9dp"
+        app:contentPadding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_gravity="left"
+                    style="@style/TextViewLargeApplicationSub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="วันที่แจ้งซ่อม"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/tv_dete_get"
+                    android:layout_gravity="left"
+                    style="@style/TextViewLargeApplicationSub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextViewLargeApplicationSub"
+                    android:layout_gravity="left"
+                    android:text="อารการที่เสีย : "
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/tv_detail_get"
+                    style="@style/TextViewLargeApplicationSub"
+                    android:layout_gravity="left"
+                    android:textSize="24dp" />
+
+
+            </LinearLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:errorEnabled="true">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/til_test_result_get"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="อาการที่ตรวจเจอ" />
+                    android:hint="อาการที่ตรวจเจอ"
+                    android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <RadioButton
-                android:id="@+id/red_get"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ดำเนินการเรียบร้อย" />
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <RadioButton
+                    android:id="@+id/red_get"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ดำเนินการเรียบร้อย" />
 
+                <RadioButton
+                    android:id="@+id/green_get"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="รอเปลี่ยนอะไหล่" />
 
-            <RadioButton
-                android:id="@+id/green_get"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="รอเปลี่ยนอะไหล่" />
-
+            </RadioGroup>
 
 
         </LinearLayout>
 
 
-
     </androidx.cardview.widget.CardView>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,6 +152,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custorm_input"
             android:text="บันทึก" />
+
         <Button
             style="@style/not"
             android:id="@+id/bt_cancel_get"
@@ -100,9 +161,6 @@
             android:background="@drawable/custorm_input"
             android:text="ยกเลิก" />
     </LinearLayout>
-
-
-
 
 
 </LinearLayout>
