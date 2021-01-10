@@ -1,12 +1,17 @@
 package com.srisuk.computerrepair.data.datasource
 
+import android.content.ContentValues
+import android.util.Log
 import com.srisuk.computerrepair.data.database.*
 import com.srisuk.computerrepair.data.map.*
 import com.srisuk.computerrepair.data.models.*
 import com.srisuk.computerrepair.data.models.Role
+import com.srisuk.computerrepair.data.request.AcceptRequest
 import com.srisuk.computerrepair.data.request.InsertRepairRequest
 import com.srisuk.computerrepair.data.request.LoginRequest
+import com.srisuk.computerrepair.data.response.AcceptResponse
 import com.srisuk.computerrepair.data.response.BaseResponse
+import com.srisuk.computerrepair.data.response.EmployeeResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -104,6 +109,20 @@ object DataSourceImpl : DataSource {
                 .map { MapObject.toUser(it) }
                 .single()
         }
+    }
+
+    override fun checkemployee(jobId:Int):EmployeeModel {
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            Repair
+                .slice(Repair.employee_id)
+                .select { Repair.repair_id eq jobId  }
+                .map { EmployeeMap.toEmployeeMap(it)  }
+                .single()
+        }
+
+
+
     }
 
     override fun roomdevice(): List<RoomDeviceModel> {
@@ -211,5 +230,40 @@ object DataSourceImpl : DataSource {
         }
 
     }
+
+    override fun Accept (req:AcceptRequest):AcceptResponse{
+        val response = AcceptResponse()
+        val qq=req.employee_id
+        Log.d(ContentValues.TAG, "onActivityCreated3:$qq ")
+         transaction {
+            addLogger(StdOutSqlLogger)
+            Repair.update({Repair.repair_id eq req.job_id} ){
+                it [employee_id]=req.employee_id
+            }
+
+
+        }
+        response.success=true
+        response.message = "Insert success"
+        return response
+    }
+
+//        return transaction {
+//            addLogger(StdOutSqlLogger)
+//            Repair.update ({Repair.repair_id eq req.job_id}){
+//                it [employee_id]=req.employee_id
+//            }
+//        }
 }
 
+
+//override fun updateProduct(request: UpdateProductRequest) {
+//    transaction {
+//        addLogger(StdOutSqlLogger)
+//
+//        Products.update({ Products.productId eq 2 }) {
+//            it[productName] = request.name
+//            it[updated] = DateTime.now()
+//        }
+//    }
+//}

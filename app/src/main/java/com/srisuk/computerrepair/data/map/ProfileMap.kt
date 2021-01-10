@@ -12,5 +12,4 @@ object ProfileMap {
         telephone = row[Users.telephone],
         agency_name = row[Agency.agency_name],
     )
-
 }

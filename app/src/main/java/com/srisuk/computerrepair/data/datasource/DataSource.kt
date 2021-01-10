@@ -1,9 +1,12 @@
 package com.srisuk.computerrepair.data.datasource
 
 import com.srisuk.computerrepair.data.models.*
+import com.srisuk.computerrepair.data.request.AcceptRequest
 import com.srisuk.computerrepair.data.request.InsertRepairRequest
 import com.srisuk.computerrepair.data.request.LoginRequest
+import com.srisuk.computerrepair.data.response.AcceptResponse
 import com.srisuk.computerrepair.data.response.BaseResponse
+import com.srisuk.computerrepair.data.response.EmployeeResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
 
 interface DataSource {
@@ -19,4 +22,6 @@ interface DataSource {
     fun insertRepair(req: InsertRepairRequest): BaseResponse
     fun getjob():List<JobModel>
     fun SelectGetJob(repair_id: Int):GetJobModel
+    fun Accept (req: AcceptRequest):AcceptResponse
+    fun checkemployee(jobId:Int):EmployeeModel
 }

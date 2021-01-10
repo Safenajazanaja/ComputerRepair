@@ -23,7 +23,7 @@ class GetJobFragment : BaseFragment(R.layout.fragment_get_job) {
         adt.onClick ={
             val intent = Intent(context, TestResultActivity::class.java).apply {
                 val repair_job = it.repair_id
-                Log.d(TAG, "onActivityCreated:$repair_job ")
+//                Log.d(TAG, "onActivityCreated:$repair_job ")
                 putExtra("repair_job",it.repair_id)
 
 
