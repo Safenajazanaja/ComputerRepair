@@ -27,5 +27,4 @@ abstract class BaseFragment(@LayoutRes layout: Int) : Fragment(layout) {
             password = "1234",
         )
     }
-
 }

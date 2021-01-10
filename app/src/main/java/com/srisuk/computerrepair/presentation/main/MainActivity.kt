@@ -8,6 +8,7 @@ import com.srisuk.computerrepair.presentation.job.GetJobFragment
 import com.srisuk.computerrepair.R
 import com.srisuk.computerrepair.presentation.repair.RepairFragment
 import com.srisuk.computerrepair.presentation.history.HistoryFragment
+import com.srisuk.computerrepair.presentation.operate.OperateFragment
 import com.srisuk.computerrepair.presentation.profile.ProfileFragment
 import com.srisuk.computerrepair.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -44,6 +45,7 @@ class MainActivity : BaseActivity() {
             val selectedFragment: Fragment = when (item.itemId) {
                 R.id.nav_repair -> RepairFragment()
                 R.id.nav_job -> GetJobFragment()
+                R.id.nav_job_Operate -> OperateFragment()
                 R.id.nav_profile -> ProfileFragment()
                 else -> HistoryFragment()
             }
