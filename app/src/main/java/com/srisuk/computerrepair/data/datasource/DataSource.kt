@@ -4,6 +4,7 @@ import com.srisuk.computerrepair.data.models.*
 import com.srisuk.computerrepair.data.request.AcceptRequest
 import com.srisuk.computerrepair.data.request.InsertRepairRequest
 import com.srisuk.computerrepair.data.request.LoginRequest
+import com.srisuk.computerrepair.data.request.SaveJogRequest
 import com.srisuk.computerrepair.data.response.AcceptResponse
 import com.srisuk.computerrepair.data.response.BaseResponse
 import com.srisuk.computerrepair.data.response.EmployeeResponse
@@ -24,4 +25,5 @@ interface DataSource {
     fun SelectGetJob(repair_id: Int):GetJobModel
     fun Accept (req: AcceptRequest):AcceptResponse
     fun checkemployee(jobId:Int):EmployeeModel
+    fun savejob(req: SaveJogRequest)
 }

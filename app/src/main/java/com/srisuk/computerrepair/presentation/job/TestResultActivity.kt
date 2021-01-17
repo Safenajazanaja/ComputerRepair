@@ -5,18 +5,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import com.srisuk.computerrepair.R
-import com.srisuk.computerrepair.data.models.GetJobModel
-import com.srisuk.computerrepair.data.models.JobModel
 import com.srisuk.computerrepair.data.request.AcceptRequest
-import com.srisuk.computerrepair.data.response.AcceptResponse
+import com.srisuk.computerrepair.data.request.SaveJogRequest
 import com.srisuk.computerrepair.presentation.main.MainActivity
+import com.srisuk.computerrepair.presentation.repair.RepairFragment
 import com.srisuk.computerrepair.ui.BaseActivity
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_testressult.*
 
 class TestResultActivity : BaseActivity() {
+    private lateinit var radioGroup: RadioGroup
+    private lateinit var selectedRadioButton: RadioButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_testressult)
@@ -24,6 +25,10 @@ class TestResultActivity : BaseActivity() {
         val userId = getSharedPreferences("file", MODE_PRIVATE).getInt("userId",0)
 
 //        Log.d(ContentValues.TAG, "onActivityCreated:$repair_job ")
+
+        //radioGroup
+        radioGroup =findViewById(R.id.radio_group)
+
 
 
         val data = dataSource.SelectGetJob(repair_job)
@@ -54,13 +59,24 @@ class TestResultActivity : BaseActivity() {
 
 
         }
+        val test_result = til_test_result_get.text.toString().trim()
+        Bt_ok_get.setOnClickListener {
+
+            val selectedRadioButtonId: Int = radioGroup.checkedRadioButtonId
+            selectedRadioButton=findViewById(selectedRadioButtonId)
+            if (selectedRadioButtonId==2131231013 ){
+                val datesavejob= SaveJogRequest(1,test_result,repair_job)
+                dataSource.savejob(datesavejob)
+                startActivity(Intent(baseContext, RepairFragment::class.java))
+            }else if (selectedRadioButtonId==2131231014){
+                val datesavejob= SaveJogRequest(2,test_result,repair_job)
+                dataSource.savejob(datesavejob)
+                startActivity(Intent(baseContext, RepairFragment::class.java))
+            }
+//            Log.d(ContentValues.TAG, "onActivityCreated2:$selectedRadioButtonId ")
 
 
-
-
+        }
 
     }
-
-
-
 }
