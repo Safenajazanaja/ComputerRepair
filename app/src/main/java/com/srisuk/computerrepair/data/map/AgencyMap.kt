@@ -5,7 +5,8 @@ import com.srisuk.computerrepair.data.models.AgencyNameModel
 import org.jetbrains.exposed.sql.ResultRow
 
 object AgencyMap {
-    fun toAgencyMap(row: ResultRow)=AgencyNameModel(
-        agency_name = row[Agency.agency_name]
+    fun toAgencyMap(row: ResultRow) = AgencyNameModel(
+        agency_name = row[Agency.agency_name],
+        agency_id = row[Agency.agency_id]
     )
 }

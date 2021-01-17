@@ -1,16 +1,11 @@
 package com.srisuk.computerrepair.data.datasource
 
-import android.content.ContentValues
-import android.util.Log
 import com.srisuk.computerrepair.data.database.*
 import com.srisuk.computerrepair.data.map.*
 import com.srisuk.computerrepair.data.models.*
 import com.srisuk.computerrepair.data.models.Role
-import com.srisuk.computerrepair.data.request.AcceptRequest
 import com.srisuk.computerrepair.data.request.InsertRepairRequest
 import com.srisuk.computerrepair.data.request.LoginRequest
-import com.srisuk.computerrepair.data.request.SaveJogRequest
-import com.srisuk.computerrepair.data.response.AcceptResponse
 import com.srisuk.computerrepair.data.response.BaseResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
 import org.jetbrains.exposed.sql.*
@@ -77,7 +72,8 @@ object DataSourceImpl : DataSource {
             addLogger(StdOutSqlLogger)
             (Users innerJoin Agency)
                 .slice(
-                    Agency.agency_name
+                    Agency.agency_name,
+                    Agency.agency_id
                 )
                 .select { Users.user_id eq userId }
                 .map { AgencyMap.toAgencyMap(it) }
@@ -111,25 +107,11 @@ object DataSourceImpl : DataSource {
         }
     }
 
-    override fun checkemployee(jobId:Int):EmployeeModel {
-        return transaction {
-            addLogger(StdOutSqlLogger)
-            Repair
-                .slice(Repair.employee_id)
-                .select { Repair.repair_id eq jobId  }
-                .map { EmployeeMap.toEmployeeMap(it)  }
-                .single()
-        }
-
-
-
-    }
-
-    override fun roomdevice(): List<RoomDeviceModel> {
+    override fun roomdevice(id:Int): List<RoomDeviceModel> {
         return transaction {
             addLogger(StdOutSqlLogger)
             Room
-                .selectAll()
+                .select{Room.agency_id eq id}
                 .map { RoomDeviceMap.toRoomDevice(it) }
         }
     }
@@ -230,35 +212,5 @@ object DataSourceImpl : DataSource {
         }
 
     }
-
-    override fun Accept (req:AcceptRequest):AcceptResponse{
-        val response = AcceptResponse()
-        val qq=req.employee_id
-        Log.d(ContentValues.TAG, "onActivityCreated3:$qq ")
-         transaction {
-            addLogger(StdOutSqlLogger)
-            Repair.update({Repair.repair_id eq req.job_id} ){
-                it [employee_id]=req.employee_id
-            }
-
-
-        }
-        response.success=true
-        response.message = "Insert success"
-        return response
-    }
-
-    override fun savejob(req:SaveJogRequest){
-        return transaction {
-            addLogger(StdOutSqlLogger)
-            Repair.update({Repair.repair_id eq req.repair_job}){
-                it[status_id]=req.status_id
-                it[test_result]=req.test_result.toString()
-            }
-
-        }
-    }
 }
-
-
 

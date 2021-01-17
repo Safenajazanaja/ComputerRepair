@@ -6,7 +6,8 @@ import org.jetbrains.exposed.sql.ResultRow
 
 object RoomDeviceMap {
     fun toRoomDevice(row: ResultRow) = RoomDeviceModel(
-        roomId  = row[Room.room_id],
-        roomNumber =row[Room.room_number]
+        roomId = row[Room.room_id],
+        roomNumber = row[Room.room_number],
+        agency_id = row[Room.agency_id]
     )
 }

@@ -59,9 +59,9 @@
             android:id="@+id/btLogin"
             style="@style/MatchWrap"
             android:layout_marginTop="50dp"
-            android:background="@drawable/custorm_input"
+            android:background="@drawable/custorm"
             android:text="เข้าสู่ระบบ"
-            android:textColor="#8F2F2F"
+            android:textColor="#FFF"
             android:textStyle="bold" />
     </LinearLayout>
 

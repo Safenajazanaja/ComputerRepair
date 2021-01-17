@@ -151,15 +151,19 @@
             android:id="@+id/Bt_ok_get"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/custorm_input"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:background="@drawable/custormforestgreen"
             android:text="บันทึก" />
 
         <Button
             style="@style/not"
+            android:textStyle="bold"
+            android:textColor="#fff"
             android:id="@+id/bt_cancel_get"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/custorm_input"
+            android:background="@drawable/custormorange"
             android:text="ยกเลิก" />
     </LinearLayout>
 
