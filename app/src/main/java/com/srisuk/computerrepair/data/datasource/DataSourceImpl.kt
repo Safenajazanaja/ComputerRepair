@@ -4,8 +4,11 @@ import com.srisuk.computerrepair.data.database.*
 import com.srisuk.computerrepair.data.map.*
 import com.srisuk.computerrepair.data.models.*
 import com.srisuk.computerrepair.data.models.Role
+import com.srisuk.computerrepair.data.request.AcceptRequest
 import com.srisuk.computerrepair.data.request.InsertRepairRequest
 import com.srisuk.computerrepair.data.request.LoginRequest
+import com.srisuk.computerrepair.data.request.SaveJogRequest
+import com.srisuk.computerrepair.data.response.AcceptResponse
 import com.srisuk.computerrepair.data.response.BaseResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
 import org.jetbrains.exposed.sql.*
@@ -212,5 +215,18 @@ object DataSourceImpl : DataSource {
         }
 
     }
+
+    override fun Accept(req: AcceptRequest): AcceptResponse {
+        TODO("Not yet implemented")
+    }
+
+    override fun checkemployee(jobId: Int): EmployeeModel {
+        TODO("Not yet implemented")
+    }
+
+    override fun savejob(req: SaveJogRequest) {
+        TODO("Not yet implemented")
+    }
+
 }
 
