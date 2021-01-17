@@ -1,5 +1,6 @@
 package com.srisuk.computerrepair.data.database
 
+import com.srisuk.computerrepair.data.database.Device.references
 import org.jetbrains.exposed.sql.Table
 
 object Agency : Table("agency") {
