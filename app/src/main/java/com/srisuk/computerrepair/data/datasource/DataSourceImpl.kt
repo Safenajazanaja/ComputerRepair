@@ -9,9 +9,9 @@ import com.srisuk.computerrepair.data.models.Role
 import com.srisuk.computerrepair.data.request.AcceptRequest
 import com.srisuk.computerrepair.data.request.InsertRepairRequest
 import com.srisuk.computerrepair.data.request.LoginRequest
+import com.srisuk.computerrepair.data.request.SaveJogRequest
 import com.srisuk.computerrepair.data.response.AcceptResponse
 import com.srisuk.computerrepair.data.response.BaseResponse
-import com.srisuk.computerrepair.data.response.EmployeeResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -248,22 +248,17 @@ object DataSourceImpl : DataSource {
         return response
     }
 
-//        return transaction {
-//            addLogger(StdOutSqlLogger)
-//            Repair.update ({Repair.repair_id eq req.job_id}){
-//                it [employee_id]=req.employee_id
-//            }
-//        }
+    override fun savejob(req:SaveJogRequest){
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            Repair.update({Repair.repair_id eq req.repair_job}){
+                it[status_id]=req.status_id
+                it[test_result]=req.test_result.toString()
+            }
+
+        }
+    }
 }
 
 
-//override fun updateProduct(request: UpdateProductRequest) {
-//    transaction {
-//        addLogger(StdOutSqlLogger)
-//
-//        Products.update({ Products.productId eq 2 }) {
-//            it[productName] = request.name
-//            it[updated] = DateTime.now()
-//        }
-//    }
-//}
+
