@@ -12,7 +12,7 @@ interface DataSource {
     fun history(userId: Int): List<History>
     fun devices(roomId: Int): List<DeviceModel>
     fun checkrole(userId: Int): Role
-    fun roomdevice(): List<RoomDeviceModel>
+    fun roomdevice(id:Int): List<RoomDeviceModel>
     fun problemdetail(): List<ProblemDetailModel>
     fun devicedetail(deviceId:Int):List<DeviceDetailModel>
     fun checkagency(userId: Int):AgencyNameModel

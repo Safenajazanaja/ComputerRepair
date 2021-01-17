@@ -36,10 +36,11 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
         super.onActivityCreated(savedInstanceState)
         val userId =context?.getSharedPreferences("file",
             AppCompatActivity.MODE_PRIVATE)?.getInt("userId",0)
-        setSpinnerAddressRoom()
-        setSpinnerProblem()
         val agency = userId?.let { dataSource.checkagency(it) }
         tv_agency_name.text=agency?.agency_name.toString().trim()
+        val agencyId=agency?.agency_id
+        agencyId?.let { setSpinnerAddressRoom(it) }
+        setSpinnerProblem()
         req =InsertRepairRequest(user_id = userId,employee_id = null,problem_id = problemId,status_id = 2
             ,repair_date = DateTime.now(),detail,test_result = null, device_id =  deviceId)
         btn_repair.setOnClickListener {
@@ -70,9 +71,9 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
 
         }
     }
+    private fun setSpinnerAddressRoom(agency_id:Int) {
 
-    private fun setSpinnerAddressRoom() {
-        val list = dataSource.roomdevice() as MutableList<RoomDeviceModel>
+        val list = dataSource.roomdevice(agency_id) as MutableList<RoomDeviceModel>
         bar_spinner_room.adapter = RoomDeviceAdapter(
             requireContext(), list)
         bar_spinner_room.onItemSelected<RoomDeviceModel> {

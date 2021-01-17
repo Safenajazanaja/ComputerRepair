@@ -72,7 +72,8 @@ object DataSourceImpl : DataSource {
             addLogger(StdOutSqlLogger)
             (Users innerJoin Agency)
                 .slice(
-                    Agency.agency_name
+                    Agency.agency_name,
+                    Agency.agency_id
                 )
                 .select { Users.user_id eq userId }
                 .map { AgencyMap.toAgencyMap(it) }
@@ -106,11 +107,11 @@ object DataSourceImpl : DataSource {
         }
     }
 
-    override fun roomdevice(): List<RoomDeviceModel> {
+    override fun roomdevice(id:Int): List<RoomDeviceModel> {
         return transaction {
             addLogger(StdOutSqlLogger)
             Room
-                .selectAll()
+                .select{Room.agency_id eq id}
                 .map { RoomDeviceMap.toRoomDevice(it) }
         }
     }
