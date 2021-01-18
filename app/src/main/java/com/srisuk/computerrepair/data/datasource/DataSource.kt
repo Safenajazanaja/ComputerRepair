@@ -26,4 +26,5 @@ interface DataSource {
     fun Accept (req: AcceptRequest):AcceptResponse
     fun checkemployee(jobId:Int):EmployeeModel
     fun savejob(req: SaveJogRequest)
+    fun youjob(userId: Int):List<YoujobModel>
 }

@@ -6,6 +6,7 @@ import com.srisuk.computerrepair.data.database.Repair
 import com.srisuk.computerrepair.data.database.Room
 import com.srisuk.computerrepair.data.models.GetJobModel
 import com.srisuk.computerrepair.data.models.JobModel
+import com.srisuk.computerrepair.data.models.YoujobModel
 import org.jetbrains.exposed.sql.ResultRow
 
 object JobMap {
@@ -17,6 +18,12 @@ object JobMap {
         repair_id=row[Repair.repair_id]
     )
     fun toGetJob(row: ResultRow)=GetJobModel(
+        date_job = row[Repair.repair_date],
+        agency_job = row[Agency.agency_name],
+        room_job =  row[Room.room_number],
+        problem_job =  row[Problem.problem_name],
+    )
+    fun toyoujob(row: ResultRow)=YoujobModel(
         date_job = row[Repair.repair_date],
         agency_job = row[Agency.agency_name],
         room_job =  row[Room.room_number],

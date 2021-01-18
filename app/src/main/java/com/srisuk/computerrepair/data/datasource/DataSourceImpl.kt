@@ -1,5 +1,6 @@
 package com.srisuk.computerrepair.data.datasource
 
+import android.content.ContentValues
 import com.srisuk.computerrepair.data.database.*
 import com.srisuk.computerrepair.data.map.*
 import com.srisuk.computerrepair.data.models.*
@@ -191,8 +192,7 @@ object DataSourceImpl : DataSource {
                      Problem.problem_name,
                      Repair.repair_id
                  )
-                 .select { Repair.user_id eq Users.user_id  }
-                 .andWhere { Repair.employee_id eq 0 }
+                 .select { Repair.employee_id eq 0 }
                  .map { JobMap.toJob(it) }
          }
      }
@@ -217,15 +217,56 @@ object DataSourceImpl : DataSource {
     }
 
     override fun Accept(req: AcceptRequest): AcceptResponse {
-        TODO("Not yet implemented")
+        val response = AcceptResponse()
+        val qq=req.employee_id
+        transaction {
+            addLogger(StdOutSqlLogger)
+            Repair.update({Repair.repair_id eq req.job_id} ){
+                it [employee_id]=req.employee_id
+            }
+
+
+        }
+        response.success=true
+        response.message = "Insert success"
+        return response
     }
 
     override fun checkemployee(jobId: Int): EmployeeModel {
-        TODO("Not yet implemented")
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            Repair
+                .slice(Repair.employee_id)
+                .select { Repair.repair_id eq jobId  }
+                .map { EmployeeMap.toEmployeeMap(it)  }
+                .single()
+        }
     }
 
     override fun savejob(req: SaveJogRequest) {
-        TODO("Not yet implemented")
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            Repair.update({Repair.repair_id eq req.repair_job}){
+                it[status_id]=req.status_id
+                it[test_result]=req.test_result.toString()
+            }
+
+        }
+    }
+    override fun youjob(userId: Int):List<YoujobModel>{
+        return  transaction {
+            addLogger(StdOutSqlLogger)
+            (Repair innerJoin Problem innerJoin Users innerJoin Agency innerJoin Room)
+                .slice(
+                    Repair.repair_date,
+                    Agency.agency_name,
+                    Room.room_number,
+                    Problem.problem_name,
+                    Repair.repair_id
+                )
+                .select { Repair.employee_id eq userId  }
+                .map { JobMap.toyoujob(it) }
+        }
     }
 
 }
