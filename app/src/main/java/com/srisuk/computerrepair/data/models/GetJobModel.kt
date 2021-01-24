@@ -7,5 +7,6 @@ data class GetJobModel(
     val agency_job: String? = null,
     val room_job: String? = null,
     val problem_job: String? = null,
+    val count_time :Long
 )
 

@@ -80,6 +80,50 @@
                     android:textSize="24dp" />
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_gravity="left"
+                    style="@style/TextViewLargeApplicationSub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="วันที่รับงาน"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/tv_date_time"
+                    android:layout_gravity="left"
+                    style="@style/TextViewLargeApplicationSub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_gravity="left"
+                    style="@style/TextViewLargeApplicationSub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="รับงานมาแล้ว"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/tv_count_time"
+                    android:layout_gravity="left"
+                    style="@style/TextViewLargeApplicationSub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -13,6 +13,7 @@ import com.srisuk.computerrepair.data.response.AcceptResponse
 import com.srisuk.computerrepair.data.response.BaseResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.jodatime.datetime
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
 
@@ -207,11 +208,11 @@ object DataSourceImpl : DataSource {
                     Agency.agency_name,
                     Room.room_number,
                     Problem.problem_name,
+                    Repair.count_time
                 )
                 .select { Repair.repair_id eq repair_id  }
                 .map { JobMap.toGetJob(it) }
                 .single()
-
         }
 
     }
@@ -223,6 +224,7 @@ object DataSourceImpl : DataSource {
             addLogger(StdOutSqlLogger)
             Repair.update({Repair.repair_id eq req.job_id} ){
                 it [employee_id]=req.employee_id
+                it [count_time]=DateTime.now().millis
             }
 
 

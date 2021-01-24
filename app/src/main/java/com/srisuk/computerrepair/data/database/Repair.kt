@@ -14,6 +14,8 @@ object Repair : Table("repair") {
     val repair_date = datetime("repair_date")
     val detail = varchar("detail", 50)
     val test_result = varchar("test_result", 50)
+    val datelong = long("datelong")
+    val count_time = long("count_time")
 
     override val primaryKey: PrimaryKey?
         get() = PrimaryKey(Repair.repair_id, name = "repair_id")

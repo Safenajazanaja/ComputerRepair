@@ -14,6 +14,7 @@ import com.srisuk.computerrepair.presentation.main.MainActivity
 import com.srisuk.computerrepair.presentation.repair.RepairFragment
 import com.srisuk.computerrepair.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_testressult.*
+import java.util.*
 
 class TestResultActivity : BaseActivity() {
     private lateinit var radioGroup: RadioGroup
