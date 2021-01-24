@@ -28,6 +28,7 @@ object JobMap {
         agency_job = row[Agency.agency_name],
         room_job =  row[Room.room_number],
         problem_job =  row[Problem.problem_name],
+        repair_id=row[Repair.repair_id]
     )
 
 }

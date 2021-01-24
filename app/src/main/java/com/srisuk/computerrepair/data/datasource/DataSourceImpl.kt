@@ -248,7 +248,7 @@ object DataSourceImpl : DataSource {
             addLogger(StdOutSqlLogger)
             Repair.update({Repair.repair_id eq req.repair_job}){
                 it[status_id]=req.status_id
-                it[test_result]=req.test_result.toString()
+                it[test_result]=req.test_result
             }
 
         }
@@ -266,8 +266,26 @@ object DataSourceImpl : DataSource {
                 )
                 .select { Repair.employee_id eq userId  }
                 .map { JobMap.toyoujob(it) }
+
+
         }
     }
+//    override fun getjob():List<JobModel>{
+//        return  transaction {
+//            addLogger(StdOutSqlLogger)
+//            (Repair innerJoin Problem innerJoin Users innerJoin Agency innerJoin Room)
+//                .slice(
+//                    Repair.repair_date,
+//                    Agency.agency_name,
+//                    Room.room_number,
+//                    Problem.problem_name,
+//                    Repair.repair_id
+//                )
+//                .select { Repair.employee_id eq 0 }
+//                .map { JobMap.toJob(it) }
+//        }
+//    }
+
 
 }
 

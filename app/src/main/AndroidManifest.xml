@@ -11,11 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ComputerRepair">
-        <activity android:name=".ConfirmRepairActivity"></activity>
+        <activity android:name=".presentation.operate.TestActivity"></activity>
+        <activity android:name=".ConfirmRepairActivity" />
         <activity android:name=".presentation.job.TestResultActivity" />
         <activity android:name=".presentation.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

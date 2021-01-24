@@ -27,7 +27,7 @@ class TestResultActivity : BaseActivity() {
 //        Log.d(ContentValues.TAG, "onActivityCreated:$repair_job ")
 
         //radioGroup
-        radioGroup =findViewById(R.id.radio_group)
+        radioGroup =findViewById(R.id.radio_grou)
 
 
 

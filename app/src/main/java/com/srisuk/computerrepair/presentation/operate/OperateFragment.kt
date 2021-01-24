@@ -1,7 +1,9 @@
 package com.srisuk.computerrepair.presentation.operate
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.srisuk.computerrepair.R
@@ -24,10 +26,11 @@ class OperateFragment: BaseFragment(R.layout.fragment_operate)  {
         val data = userId?.let { dataSource.youjob(it) }
         adt.setList(data)
         adt.onClick = {
-            val intent = Intent(context, TestResultActivity::class.java).apply {
-                val repair_job = it.repair_id
+            val intent = Intent(context, TestActivity::class.java).apply {
+//                val repair_job = it.repair_id
 //                Log.d(TAG, "onActivityCreated:$repair_job ")
-                putExtra("repair_job", it.repair_id)
+                putExtra("repair_job1", it.repair_id)
+
 
 
             }
