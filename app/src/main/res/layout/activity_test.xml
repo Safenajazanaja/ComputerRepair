@@ -204,7 +204,7 @@
             style="@style/not"
             android:textStyle="bold"
             android:textColor="#fff"
-            android:id="@+id/bt_cancel_youget"
+            android:id="@+id/bt_cancel_you_get"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/custormorange"

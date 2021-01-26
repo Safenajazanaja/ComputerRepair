@@ -103,6 +103,8 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
         bar_spinner_device_name.onItemSelected<DeviceDetailModel> {
             devicename = it
             namecode =it.device_detail_name
+
+//            bar_spinner_device_name.isEnabled = false
         }
     }
 

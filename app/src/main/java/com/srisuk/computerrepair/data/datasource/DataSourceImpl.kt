@@ -170,7 +170,6 @@ object DataSourceImpl : DataSource {
             addLogger(StdOutSqlLogger)
             (Repair innerJoin Users innerJoin Agency innerJoin Room innerJoin Problem innerJoin Status)
                 .slice(
-
                     Repair.repair_date,
                     Agency.agency_name,
                     Room.room_number,
@@ -178,7 +177,7 @@ object DataSourceImpl : DataSource {
                     Status.status_name
                 )
                 .select { Repair.user_id eq userId }
-                .andWhere { Users.user_id eq Repair.user_id }
+               .andWhere { Users.user_id eq Repair.user_id }
                 .map { HistoryMap.toHistory(it) }
         }
     }
@@ -216,18 +215,16 @@ object DataSourceImpl : DataSource {
         }
 
     }
-
+    
     override fun Accept(req: AcceptRequest): AcceptResponse {
         val response = AcceptResponse()
-        val qq=req.employee_id
         transaction {
             addLogger(StdOutSqlLogger)
             Repair.update({Repair.repair_id eq req.job_id} ){
                 it [employee_id]=req.employee_id
+                it [status_id]=3
                 it [count_time]=DateTime.now().millis
             }
-
-
         }
         response.success=true
         response.message = "Insert success"

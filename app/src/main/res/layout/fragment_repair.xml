@@ -38,9 +38,9 @@
                 android:text="หน่วยงาน" />
 
             <TextView
-               android:gravity="center"
                 android:id="@+id/tv_agency_name"
                 style="@style/EditTextInputNoT"
+                android:gravity="center"
                 android:hint="หน่วยงาน" />
         </LinearLayout>
 
@@ -106,6 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="10dp">
+
             <com.google.android.material.textfield.TextInputLayout style="@style/StyleTextInputLayoutV2">
 
                 <com.google.android.material.textfield.TextInputEditText
