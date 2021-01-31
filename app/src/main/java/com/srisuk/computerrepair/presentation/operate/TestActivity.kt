@@ -21,7 +21,6 @@ class TestActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
-
         val repair_job = intent.getIntExtra("repair_job1", 0)
         val data = dataSource.SelectGetJob(repair_job)
         radioGroup = findViewById(R.id.radio_groupyou)
