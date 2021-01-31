@@ -35,7 +35,7 @@ class ConfirmRepairActivity : BaseActivity() {
         }
         bt_confirm_confirm.setOnClickListener {
             val req = InsertRepairRequest(
-                user_id, employee_id, problem_id, status_id, DateTime.now(), detail.toString(), null, device_id
+                user_id, employee_id, problem_id, status_id, System.currentTimeMillis(), detail.toString(), null, device_id
             )
             val result = dataSource.insertRepair(req)
             if (result.success) {

@@ -17,6 +17,7 @@ import com.srisuk.computerrepair.presentation.main.MainActivity
 import com.srisuk.computerrepair.presentation.repair.RepairFragment
 import com.srisuk.computerrepair.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_testressult.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class TestResultActivity : BaseActivity() {
@@ -25,41 +26,42 @@ class TestResultActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_testressult)
-        val  repair_job= intent.getIntExtra("repair_job",0)
-        val userId = getSharedPreferences("file", MODE_PRIVATE).getInt("userId",0)
+        val repair_job = intent.getIntExtra("repair_job", 0)
+        val userId = getSharedPreferences("file", MODE_PRIVATE).getInt("userId", 0)
 
 //        Log.d(ContentValues.TAG, "onActivityCreated:$repair_job ")
 
         //radioGroup
-        radioGroup =findViewById(R.id.radio_grou)
-
+        radioGroup = findViewById(R.id.radio_grou)
 
 
         val data = dataSource.SelectGetJob(repair_job)
-        val chak=dataSource.checkemployee(repair_job)
+        val chak = dataSource.checkemployee(repair_job)
 //        Log.d(ContentValues.TAG, "onActivityCreated1:$userId ")
 
-        if (chak.id_emp == 0){
-            Bt_getjob.visibility=View.VISIBLE
+        if (chak.id_emp == 0) {
+            Bt_getjob.visibility = View.VISIBLE
 
-        }else{
+        } else {
             Bt_getjob.visibility = View.GONE
 
         }
         bt_cancel_get_job.setOnClickListener {
             startActivity(Intent(baseContext, MainActivity::class.java))
         }
-        tv_room_get.text= data.room_job.toString()
-        tv_detail_get.text=data.problem_job.toString()
-        tv_dete_get.text=data.date_job?.toString("dd-MM-yyyy")
+        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val dateTimeStr = sdf.format( data.date_job)
+        tv_room_get.text = data.room_job.toString()
+        tv_detail_get.text = data.problem_job.toString()
+        tv_dete_get.text = dateTimeStr
 
 //        Bt_getjob.setOn
 //        Bt_getjob.visibility = View.GONE
         Bt_getjob.setOnClickListener {
-            val req= AcceptRequest(userId,repair_job)
-            val dataaccept =dataSource.Accept(req)
+            val req = AcceptRequest(userId, repair_job)
+            val dataaccept = dataSource.Accept(req)
 //           Log.d(ContentValues.TAG, "onActivityCreated2:$dataaccept ")
-            if (dataaccept.success==true){
+            if (dataaccept.success == true) {
                 startActivity(Intent(baseContext, MainActivity::class.java))
             }
 

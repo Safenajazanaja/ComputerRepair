@@ -4,6 +4,6 @@ import org.joda.time.DateTime
 
 data class HistoryRequest(
     val userId:Int,
-    val date: DateTime,
-    val dateEnd:DateTime
+    val date: Long,
+    val dateEnd:Long
 )

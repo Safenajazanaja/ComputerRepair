@@ -5,10 +5,7 @@ import com.srisuk.computerrepair.data.database.*
 import com.srisuk.computerrepair.data.map.*
 import com.srisuk.computerrepair.data.models.*
 import com.srisuk.computerrepair.data.models.Role
-import com.srisuk.computerrepair.data.request.AcceptRequest
-import com.srisuk.computerrepair.data.request.InsertRepairRequest
-import com.srisuk.computerrepair.data.request.LoginRequest
-import com.srisuk.computerrepair.data.request.SaveJogRequest
+import com.srisuk.computerrepair.data.request.*
 import com.srisuk.computerrepair.data.response.AcceptResponse
 import com.srisuk.computerrepair.data.response.BaseResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
@@ -154,7 +151,7 @@ object DataSourceImpl : DataSource {
                 it[employee_id]=0
                 it[problem_id] = req.problem_id.toString().toInt()
                 it[status_id] = 0
-                it[repair_date] = DateTime.now()
+                it[repair_date] = System.currentTimeMillis()
                 it[detail] = req.detail.toString()
                 it[device_id]=req.device_id.toString().toInt()
             }
@@ -165,7 +162,7 @@ object DataSourceImpl : DataSource {
         response.message = "Insert success"
         return response
     }
-    override fun history(userId: Int): List<History> {
+    override fun history(req: HistoryRequest): List<History> {
         return transaction {
             addLogger(StdOutSqlLogger)
             (Repair innerJoin Users innerJoin Agency innerJoin Room innerJoin Problem innerJoin Status)
@@ -176,8 +173,9 @@ object DataSourceImpl : DataSource {
                     Problem.problem_name,
                     Status.status_name
                 )
-                .select { Repair.user_id eq userId }
+                .select { Repair.user_id eq req.userId }
                .andWhere { Users.user_id eq Repair.user_id }
+                .andWhere { Repair.repair_date .between(req.date,req.dateEnd) }
                 .map { HistoryMap.toHistory(it) }
         }
     }

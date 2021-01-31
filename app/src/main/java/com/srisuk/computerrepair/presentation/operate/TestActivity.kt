@@ -28,10 +28,12 @@ class TestActivity : BaseActivity() {
         val dateString = simpleDateFormat.format(data.count_time)
         val datetimeOperate = Calendar.getInstance().timeInMillis
         val daetlong = data.count_time
-        val aa = datetimeOperate - daetlong
+        val aa = datetimeOperate - daetlong!!
         tv_room_youget.text = data.room_job.toString()
         tv_detail_youget.text = data.problem_job.toString()
-        tv_dete_youget.text = data.date_job?.toString("dd-MM-yyyy")
+        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val dateTimeStr = sdf.format(data.date_job)
+        tv_dete_youget.text = dateTimeStr
         tv_date_time.text = dateString
         var str = SimpleDateFormat("mm:ss", Locale.getDefault()).format(aa) + "นาที"
         val HH =
@@ -45,18 +47,18 @@ class TestActivity : BaseActivity() {
 
             val selectedRadioButtonId: Int = radio_groupyou.checkedRadioButtonId
             selectedRadioButton = findViewById(selectedRadioButtonId)
-            if (selectedRadioButtonId == 2131231017) {
+            if (selectedRadioButtonId == 2131231018) {
                 val test_result = til_test_result_youget.text.toString().trim()
-                val datesavejob = SaveJogRequest(1, test_result, repair_job)
+                val datesavejob = SaveJogRequest(status_id=1, test_result=test_result, repair_job=repair_job)
                 dataSource.savejob(datesavejob)
                 startActivity(Intent(baseContext, RepairFragment::class.java))
-            } else if (selectedRadioButtonId == 2131231019) {
+            } else if (selectedRadioButtonId == 2131231020) {
                 val test_result = til_test_result_youget.text.toString().trim()
-                val datesavejob = SaveJogRequest(2, test_result, repair_job)
+                val datesavejob = SaveJogRequest(status_id=2, test_result=test_result, repair_job=repair_job)
                 dataSource.savejob(datesavejob)
                 startActivity(Intent(baseContext, RepairFragment::class.java))
             }
-            Log.d(ContentValues.TAG, "onActivityCreated2:$til_test_result_youget ")
+            Log.d(ContentValues.TAG, "onActivityCreated2:$selectedRadioButtonId ")
 
         }
         bt_cancel_you_get.setOnClickListener {
