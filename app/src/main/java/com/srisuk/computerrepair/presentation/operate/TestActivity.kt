@@ -48,12 +48,12 @@ class TestActivity : BaseActivity() {
 
             var selectedRadioButtonId: Int = radio_groupyou.checkedRadioButtonId
             selectedRadioButton = findViewById(selectedRadioButtonId)
-            if (selectedRadioButtonId == 2131231016) {
+            if (selectedRadioButtonId == 2131231017) {
                 val test_result = til_test_result_youget.text.toString().trim()
                 val datesavejob = SaveJogRequest(1, test_result, repair_job)
                 dataSource.savejob(datesavejob)
                 startActivity(Intent(baseContext, MainActivity::class.java))
-            } else if (selectedRadioButtonId == 2131231018) {
+            } else if (selectedRadioButtonId == 2131231019) {
                 val test_result = til_test_result_youget.text.toString().trim()
                 val datesavejob = SaveJogRequest(2, test_result, repair_job)
                 dataSource.savejob(datesavejob)
