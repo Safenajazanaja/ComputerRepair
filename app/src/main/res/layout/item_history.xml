@@ -12,9 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
+        android:orientation="horizontal">
 
 
         <GridLayout
@@ -28,27 +26,26 @@
 
             <TextView
                 android:id="@+id/tv_dete"
-                android:textSize="18sp"
                 style="@style/TextViewLargeApplicationSub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="0"
                 android:layout_column="0"
                 android:layout_columnWeight="0"
-                android:text="วันที่แจ้งซ่อม" />
+                android:text="วันที่แจ้งซ่อม"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_agency"
-                android:textSize="18sp"
                 style="@style/TextViewLargeApplicationSub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="0"
                 android:layout_column="1"
-                android:text="หน่วยงาน" />
+                android:text="หน่วยงาน"
+                android:textSize="18sp" />
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/tv_room"
                 style="@style/TextViewLargeApplicationSub"
                 android:layout_width="wrap_content"
@@ -56,18 +53,19 @@
                 android:layout_row="1"
                 android:layout_column="0"
                 android:layout_gravity="left"
-                android:text="ห้อง" />
+                android:text="ห้อง"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_detail"
-                android:textSize="18sp"
                 style="@style/TextViewLargeApplicationSub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="1"
                 android:layout_column="1"
                 android:layout_gravity="left"
-                android:text="อาการที่เสีย" />
+                android:text="อาการที่เสีย"
+                android:textSize="18sp" />
         </GridLayout>
 
         <LinearLayout
@@ -83,15 +81,34 @@
                 android:layout_height="wrap_content"
                 android:text="สถานะการซ่อม" />
 
-            <ImageView
-                android:id="@+id/iv_image"
-                android:layout_width="85dp"
-                android:layout_height="70dp"
-                android:src="@drawable/ic_baseline_build_24" />
+
+            <TextView
+                android:id="@+id/enddate"
+                style="@style/TextViewLargeApplicationSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="เวลาที่เสร็จงาน"
+
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/endtime"
+                style="@style/TextViewLargeApplicationSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="เวลาที่เสร็จงาน"
+                android:textSize="18sp" />
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/iv_image"-->
+            <!--                android:layout_width="85dp"-->
+            <!--                android:layout_height="70dp"-->
+            <!--                android:src="@drawable/ic_baseline_build_24" />-->
 
 
         </LinearLayout>
-
 
 
     </LinearLayout>

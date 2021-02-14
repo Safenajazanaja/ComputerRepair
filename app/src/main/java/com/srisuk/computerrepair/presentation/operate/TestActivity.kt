@@ -31,9 +31,7 @@ class TestActivity : BaseActivity() {
         val aa = datetimeOperate - daetlong!!
         tv_room_youget.text = data.room_job.toString()
         tv_detail_youget.text = data.problem_job.toString()
-        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val dateTimeStr = sdf.format(data.date_job)
-        tv_dete_youget.text = dateTimeStr
+        tv_dete_youget.text = data.date_job?.toString("dd-MM-yyyy")
         tv_date_time.text = dateString
         var str = SimpleDateFormat("mm:ss", Locale.getDefault()).format(aa) + "นาที"
         val HH =
@@ -43,20 +41,23 @@ class TestActivity : BaseActivity() {
         tv_count_time.text = str
         Log.d(TAG, "onCreate:$aa ")
 
+
         Bt_ok_youget.setOnClickListener {
 
-            val selectedRadioButtonId: Int = radio_groupyou.checkedRadioButtonId
+
+
+            var selectedRadioButtonId: Int = radio_groupyou.checkedRadioButtonId
             selectedRadioButton = findViewById(selectedRadioButtonId)
-            if (selectedRadioButtonId == 2131231018) {
+            if (selectedRadioButtonId == 2131231016) {
                 val test_result = til_test_result_youget.text.toString().trim()
-                val datesavejob = SaveJogRequest(status_id=1, test_result=test_result, repair_job=repair_job)
+                val datesavejob = SaveJogRequest(1, test_result, repair_job)
                 dataSource.savejob(datesavejob)
-                startActivity(Intent(baseContext, RepairFragment::class.java))
-            } else if (selectedRadioButtonId == 2131231020) {
+                startActivity(Intent(baseContext, MainActivity::class.java))
+            } else if (selectedRadioButtonId == 2131231018) {
                 val test_result = til_test_result_youget.text.toString().trim()
-                val datesavejob = SaveJogRequest(status_id=2, test_result=test_result, repair_job=repair_job)
+                val datesavejob = SaveJogRequest(2, test_result, repair_job)
                 dataSource.savejob(datesavejob)
-                startActivity(Intent(baseContext, RepairFragment::class.java))
+                startActivity(Intent(baseContext, MainActivity::class.java))
             }
             Log.d(ContentValues.TAG, "onActivityCreated2:$selectedRadioButtonId ")
 

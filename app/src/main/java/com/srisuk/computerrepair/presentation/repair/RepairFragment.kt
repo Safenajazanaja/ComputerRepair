@@ -17,6 +17,7 @@ import com.srisuk.computerrepair.ui.onItemSelected
 import kotlinx.android.synthetic.main.fragment_repair.*
 import org.joda.time.DateTime
 
+
 class RepairFragment : BaseFragment(R.layout.fragment_repair) {
     private lateinit var room: RoomDeviceModel
     private lateinit var device: DeviceModel
@@ -41,14 +42,14 @@ class RepairFragment : BaseFragment(R.layout.fragment_repair) {
         agencyId?.let { setSpinnerAddressRoom(it) }
         setSpinnerProblem()
         req =InsertRepairRequest(user_id = userId,employee_id = null,problem_id = problemId,status_id = 2
-            ,repair_date = System.currentTimeMillis(),detail,test_result = null, device_id =  deviceId)
+            ,repair_date = DateTime.now(),detail,test_result = null, device_id =  deviceId)
         btn_repair.setOnClickListener {
             val intent = Intent(context, ConfirmRepairActivity::class.java).apply {
                 putExtra("user_id",req?.user_id)
                 putExtra("employee_id",req?.employee_id)
                 putExtra("problem_id",problemId)
                 putExtra("status_id",2)
-                putExtra("repair_date",System.currentTimeMillis())
+                putExtra("repair_date",DateTime.now())
                 putExtra("detail",edt_detail.text.toString().trim())
                 putExtra("device_id",deviceId)
                 putExtra("problemName",problemName)

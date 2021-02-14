@@ -6,8 +6,6 @@ import com.srisuk.computerrepair.data.models.JobModel
 import com.srisuk.computerrepair.ui.BaseRecyclerView
 import kotlinx.android.synthetic.main.activity_testressult.view.*
 import kotlinx.android.synthetic.main.item_job.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 class GetJobAdepter:BaseRecyclerView<JobModel>() {
     override fun getLayout(): Int = R.layout.item_job
@@ -20,9 +18,8 @@ class GetJobAdepter:BaseRecyclerView<JobModel>() {
 //        tv_detail.text = data.Problem.toString()
 //        tv_name.text = data.Status.toString()
 
-        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val dateTimeStr = sdf.format( data.date_job)
-        tv_dete_job.text= dateTimeStr
+
+        tv_dete_job.text= data.date_job?.toString("dd-MM-yyyy")
         tv_agency_job.text=data.agency_job
         tv_room_job.text=data.room_job
         tv_problem_job.text=data.problem_job

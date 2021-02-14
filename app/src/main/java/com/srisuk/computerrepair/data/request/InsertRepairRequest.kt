@@ -7,7 +7,7 @@ data class InsertRepairRequest(
     val employee_id :Int?=null,
     val problem_id :Int?=null,
     val status_id :Int?=null,
-    val repair_date :Long?=null,
+    val repair_date :DateTime?=null,
     val detail :String?=null,
     val test_result :String?=null,
     val device_id :Int?=null
