@@ -8,4 +8,7 @@ data class History(
     val Agency: String? = null,
     val Status: String? = null,
     val Problem: String? = null,
+    val End:Long?=null,
+    val Star:Long?=null
+
 )

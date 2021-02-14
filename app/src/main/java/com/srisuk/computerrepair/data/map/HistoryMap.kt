@@ -13,6 +13,8 @@ object HistoryMap {
         Room = row[Room.room_number],
         Problem = row[Problem.problem_name],
         Status = row[Status.status_name],
+        End = row[Repair.enddate],
+        Star = row[Repair.datelong]
 
         )
 }
