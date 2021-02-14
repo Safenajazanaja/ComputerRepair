@@ -1,7 +1,10 @@
 package com.srisuk.computerrepair.data.datasource
 
 import com.srisuk.computerrepair.data.models.*
-import com.srisuk.computerrepair.data.request.*
+import com.srisuk.computerrepair.data.request.AcceptRequest
+import com.srisuk.computerrepair.data.request.InsertRepairRequest
+import com.srisuk.computerrepair.data.request.LoginRequest
+import com.srisuk.computerrepair.data.request.SaveJogRequest
 import com.srisuk.computerrepair.data.response.AcceptResponse
 import com.srisuk.computerrepair.data.response.BaseResponse
 import com.srisuk.computerrepair.data.response.EmployeeResponse
@@ -10,7 +13,7 @@ import com.srisuk.computerrepair.data.response.LoginResponse
 interface DataSource {
     fun login(req: LoginRequest): LoginResponse
     fun profile(userId: Int): Profile
-    fun history(req: HistoryRequest): List<History>
+    fun history(userId: Int): List<History>
     fun devices(roomId: Int): List<DeviceModel>
     fun checkrole(userId: Int): Role
     fun roomdevice(id:Int): List<RoomDeviceModel>

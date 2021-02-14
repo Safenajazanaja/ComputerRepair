@@ -31,30 +31,10 @@
         android:id="@+id/linearlayout">
 
         <Button
-            android:id="@+id/Bt_history_datestar"
+            android:id="@+id/bt_dete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="วันที่ เริ่มต้น" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="ถึง"
-            android:textColor="#151515"
-            android:textStyle="italic" />
-        <Button
-            android:id="@+id/Bt_history_dateend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="วันที่ สิ้นสุด" />
-        <Button
-            android:id="@+id/bt_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ค้นหา" />
-
+            android:text="วันที่ใช้งาน" />
     </LinearLayout>
 
 
