@@ -30,6 +30,7 @@ class ConfirmRepairActivity : BaseActivity() {
         tv_name_code_confirm.text=namecode.toString()
         val agency=dataSource.checkagency(user_id)
         tv_agency_name_confirm.text=agency.agency_name.toString()
+        tv_code_confirm.text= "รายละเอียดเพิ่มเติม:$detail"
         bt_cancel_confirm.setOnClickListener {
             startActivity(Intent(baseContext, MainActivity::class.java))
         }

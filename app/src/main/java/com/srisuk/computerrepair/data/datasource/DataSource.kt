@@ -9,11 +9,12 @@ import com.srisuk.computerrepair.data.response.AcceptResponse
 import com.srisuk.computerrepair.data.response.BaseResponse
 import com.srisuk.computerrepair.data.response.EmployeeResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
+import org.joda.time.DateTime
 
 interface DataSource {
     fun login(req: LoginRequest): LoginResponse
     fun profile(userId: Int): Profile
-    fun history(userId: Int): List<History>
+    fun history(userId: Int,st:Int,date: DateTime): List<History>
     fun devices(roomId: Int): List<DeviceModel>
     fun checkrole(userId: Int): Role
     fun roomdevice(id:Int): List<RoomDeviceModel>
@@ -27,4 +28,5 @@ interface DataSource {
     fun checkemployee(jobId:Int):EmployeeModel
     fun savejob(req: SaveJogRequest)
     fun youjob(userId: Int):List<YoujobModel>
+    fun historyall(userId: Int,date:DateTime): List<History>
 }

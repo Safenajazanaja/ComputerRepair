@@ -18,6 +18,7 @@ import java.util.*
 class TestActivity : BaseActivity() {
     private lateinit var radioGroup: RadioGroup
     private lateinit var selectedRadioButton: RadioButton
+    var status =0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
@@ -41,24 +42,32 @@ class TestActivity : BaseActivity() {
         tv_count_time.text = str
         Log.d(TAG, "onCreate:$aa ")
 
+        radioButton1you.setOnClickListener {
+            status=0
+            status=1
+            Bt_ok_youget.isEnabled=true
+        }
+        radioButton2you.setOnClickListener {
+
+            status=2
+            Bt_ok_youget.isEnabled=true
+        }
+
 
         Bt_ok_youget.setOnClickListener {
-
-
-
             var selectedRadioButtonId: Int = radio_groupyou.checkedRadioButtonId
             selectedRadioButton = findViewById(selectedRadioButtonId)
-            if (selectedRadioButtonId == 2131231017) {
+//            if (selectedRadioButtonId == 2131231019) {
                 val test_result = til_test_result_youget.text.toString().trim()
-                val datesavejob = SaveJogRequest(1, test_result, repair_job)
+                val datesavejob = SaveJogRequest(status, test_result, repair_job)
                 dataSource.savejob(datesavejob)
                 startActivity(Intent(baseContext, MainActivity::class.java))
-            } else if (selectedRadioButtonId == 2131231019) {
-                val test_result = til_test_result_youget.text.toString().trim()
-                val datesavejob = SaveJogRequest(2, test_result, repair_job)
-                dataSource.savejob(datesavejob)
-                startActivity(Intent(baseContext, MainActivity::class.java))
-            }
+//            } else if (selectedRadioButtonId == 2131231021) {
+//                val test_result = til_test_result_youget.text.toString().trim()
+//                val datesavejob = SaveJogRequest(2, test_result, repair_job)
+//                dataSource.savejob(datesavejob)
+//                startActivity(Intent(baseContext, MainActivity::class.java))
+//            }
             Log.d(ContentValues.TAG, "onActivityCreated2:$selectedRadioButtonId ")
 
         }

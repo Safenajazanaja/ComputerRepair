@@ -1,6 +1,7 @@
 package com.srisuk.computerrepair.data.database
 
 import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.sql.jodatime.Date
 import org.jetbrains.exposed.sql.jodatime.date
 import org.jetbrains.exposed.sql.jodatime.datetime
 
@@ -11,7 +12,7 @@ object Repair : Table("repair") {
     val problem_id = integer("problem_id").references(Problem.problem_id)
     val status_id = integer("status_id").references(Status.status_id)
     val device_id=integer("device_id").references(Device.device_id)
-    val repair_date = datetime("repair_date")
+    val repair_date = date("repair_date")
     val detail = varchar("detail", 50)
     val test_result = varchar("test_result", 50)
     val datelong = long("datelong")

@@ -1,6 +1,5 @@
 package com.srisuk.computerrepair.data.datasource
 
-import android.content.ContentValues
 import com.srisuk.computerrepair.data.database.*
 import com.srisuk.computerrepair.data.map.*
 import com.srisuk.computerrepair.data.models.*
@@ -13,9 +12,11 @@ import com.srisuk.computerrepair.data.response.AcceptResponse
 import com.srisuk.computerrepair.data.response.BaseResponse
 import com.srisuk.computerrepair.data.response.LoginResponse
 import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.jodatime.datetime
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 object DataSourceImpl : DataSource {
     override fun login(req: LoginRequest): LoginResponse {
@@ -112,7 +113,7 @@ object DataSourceImpl : DataSource {
         }
     }
 
-    override fun roomdevice(id:Int): List<RoomDeviceModel> {
+    override fun roomdevice(id: Int): List<RoomDeviceModel> {
         return transaction {
             addLogger(StdOutSqlLogger)
             Room
@@ -145,7 +146,6 @@ object DataSourceImpl : DataSource {
 
     override fun insertRepair(req: InsertRepairRequest): BaseResponse {
         val response = BaseResponse()
-
         val statement = transaction {
             addLogger(StdOutSqlLogger)
 
@@ -157,7 +157,7 @@ object DataSourceImpl : DataSource {
                 it[repair_date] = DateTime.now()
                 it[detail] = req.detail.toString()
                 it[device_id]=req.device_id.toString().toInt()
-                it[datelong]=DateTime.now().millis
+                it[datelong]=System.currentTimeMillis()
             }
 
         }
@@ -166,7 +166,7 @@ object DataSourceImpl : DataSource {
         response.message = "Insert success"
         return response
     }
-    override fun history(userId: Int): List<History> {
+    override fun history(userId: Int, st: Int, date: DateTime): List<History> {
         return transaction {
             addLogger(StdOutSqlLogger)
             (Repair innerJoin Users innerJoin Agency innerJoin Room innerJoin Problem innerJoin Status)
@@ -180,9 +180,35 @@ object DataSourceImpl : DataSource {
                     Repair.datelong
                 )
                 .select { Repair.user_id eq userId }
-               .andWhere { Users.user_id eq Repair.user_id }
+                .andWhere { Users.user_id eq Repair.user_id }
+                .andWhere { Repair.status_id eq st }
+                .andWhere { Repair.repair_date eq date}
                 .map { HistoryMap.toHistory(it) }
         }
+
+
+    }
+    override fun historyall(userId: Int, date: DateTime): List<History> {
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            (Repair innerJoin Users innerJoin Agency innerJoin Room innerJoin Problem innerJoin Status)
+                .slice(
+                    Repair.repair_date,
+                    Agency.agency_name,
+                    Room.room_number,
+                    Problem.problem_name,
+                    Status.status_name,
+                    Repair.enddate,
+                    Repair.datelong
+                )
+                .select { Repair.user_id eq userId }
+                .andWhere { Users.user_id eq Repair.user_id }
+                .andWhere { Repair.status_id neq  1 }
+                .andWhere { Repair.repair_date eq date}
+                .map { HistoryMap.toHistory(it) }
+        }
+
+
     }
      override fun getjob():List<JobModel>{
          return  transaction {
@@ -223,10 +249,10 @@ object DataSourceImpl : DataSource {
         val response = AcceptResponse()
         transaction {
             addLogger(StdOutSqlLogger)
-            Repair.update({Repair.repair_id eq req.job_id} ){
-                it [employee_id]=req.employee_id
-                it [status_id]=3
-                it [count_time]=DateTime.now().millis
+            Repair.update({ Repair.repair_id eq req.job_id }){
+                it[employee_id]=req.employee_id
+                it[status_id]=3
+                it[count_time]=DateTime.now().millis
             }
         }
         response.success=true
@@ -248,7 +274,7 @@ object DataSourceImpl : DataSource {
     override fun savejob(req: SaveJogRequest) {
         return transaction {
             addLogger(StdOutSqlLogger)
-            Repair.update({Repair.repair_id eq req.repair_job}){
+            Repair.update({ Repair.repair_id eq req.repair_job }){
                 it[status_id]=req.status_id
                 it[test_result]=req.test_result
                 it[enddate]=DateTime.now().millis

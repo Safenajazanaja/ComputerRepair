@@ -193,6 +193,7 @@
         <Button
             style="@style/not"
             android:id="@+id/Bt_ok_youget"
+            android:enabled="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#fff"
