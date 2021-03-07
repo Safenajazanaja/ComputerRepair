@@ -188,7 +188,7 @@ object DataSourceImpl : DataSource {
 
 
     }
-    override fun historyall(userId: Int, date: DateTime): List<History> {
+    override fun historyneq1(userId: Int, date: DateTime): List<History> {
         return transaction {
             addLogger(StdOutSqlLogger)
             (Repair innerJoin Users innerJoin Agency innerJoin Room innerJoin Problem innerJoin Status)
@@ -204,6 +204,27 @@ object DataSourceImpl : DataSource {
                 .select { Repair.user_id eq userId }
                 .andWhere { Users.user_id eq Repair.user_id }
                 .andWhere { Repair.status_id neq  1 }
+                .andWhere { Repair.repair_date eq date}
+                .map { HistoryMap.toHistory(it) }
+        }
+
+
+    }
+    override fun historyall(userId: Int, date: DateTime): List<History> {
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            (Repair innerJoin Users innerJoin Agency innerJoin Room innerJoin Problem innerJoin Status)
+                .slice(
+                    Repair.repair_date,
+                    Agency.agency_name,
+                    Room.room_number,
+                    Problem.problem_name,
+                    Status.status_name,
+                    Repair.enddate,
+                    Repair.datelong
+                )
+                .select { Repair.user_id eq userId }
+                .andWhere { Users.user_id eq Repair.user_id }
                 .andWhere { Repair.repair_date eq date}
                 .map { HistoryMap.toHistory(it) }
         }

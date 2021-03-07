@@ -1,29 +1,24 @@
 package com.srisuk.computerrepair.presentation.history
 
 import android.app.DatePickerDialog
-import android.content.ContentValues
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.srisuk.computerrepair.R
-import com.srisuk.computerrepair.data.datasource.DataSourceImpl
 import com.srisuk.computerrepair.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_history.*
 import org.joda.time.DateTime
-import java.text.SimpleDateFormat
 
 
 class HistoryFragment : BaseFragment(R.layout.fragment_history) {
     private var mCalendar: Calendar? = null
     private lateinit var selectedRadioButtonhis: RadioButton
-
+    var sta=0
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -37,24 +32,33 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
             layoutManager = LinearLayoutManager(context)
             adapter = adt
         }
+        radioButtonjob1.setOnClickListener {
+            sta=1
+        }
+        radioButtonjob2.setOnClickListener {
+            sta=2
+        }
 
 
 
         bt_okhis.setOnClickListener {
             val date = DateTime(mCalendar?.timeInMillis)
-            var id: Int = radio_groujob.checkedRadioButtonId
-            Log.d(ContentValues.TAG, "onActivityCreated3:$id ")
-            if (id == 2131231022) {
+//            var id: Int = radio_groujob.checkedRadioButtonId
+//            Log.d(ContentValues.TAG, "onActivityCreated3:$id ")
+            if (sta == 1) {
                 val data = userId?.let { it1 -> dataSource.history(userId = it1,st = 1,date = date ) }
                 adt.setList(data)
-            } else if (id==2131231023) {
-                val data= userId?.let { it1 -> dataSource.historyall(userId = it1,date = date) }
+            } else if (sta==2) {
+                val data= userId?.let { it1 -> dataSource.historyneq1(userId = it1,date = date) }
                 adt.setList(data)
-                Toast.makeText(
-                    context,
-                    "${id}",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    context,
+//                    "${id}",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+            } else if (sta==0){
+                val data= userId?.let { it1 -> dataSource.historyall(userId = it1,date = date)}
+                adt.setList(data)
             }
 
 

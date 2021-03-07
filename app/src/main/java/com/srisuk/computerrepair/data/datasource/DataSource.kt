@@ -28,5 +28,6 @@ interface DataSource {
     fun checkemployee(jobId:Int):EmployeeModel
     fun savejob(req: SaveJogRequest)
     fun youjob(userId: Int):List<YoujobModel>
-    fun historyall(userId: Int,date:DateTime): List<History>
+    fun historyneq1(userId: Int, date:DateTime): List<History>
+    fun historyall(userId: Int, date: DateTime): List<History>
 }
