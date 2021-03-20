@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.srisuk.computerrepair.R
 import com.srisuk.computerrepair.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_history.*
+import org.jetbrains.exposed.sql.jodatime.Date
 import org.joda.time.DateTime
+import org.joda.time.LocalDate
 
 
 class HistoryFragment : BaseFragment(R.layout.fragment_history) {
@@ -26,12 +28,15 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
             "file",
             AppCompatActivity.MODE_PRIVATE
         )?.getInt("userId", 0)
-
+        val fndate=DateTime.now()
+        val data= userId?.let { dataSource.historyneq1(userId = it,date = fndate) }
         val adt = HistoryAdapter()
+        adt.setList(data)
         recycler_view.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = adt
         }
+        radioButtonjob2.setChecked(true)
         radioButtonjob1.setOnClickListener {
             sta=1
         }
@@ -39,7 +44,7 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
             sta=2
         }
 
-
+        bt_dete.setText("${fndate.toLocalDate()}")
 
         bt_okhis.setOnClickListener {
             val date = DateTime(mCalendar?.timeInMillis)
