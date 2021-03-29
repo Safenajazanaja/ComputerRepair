@@ -27,13 +27,13 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
         tv_full_name.text = profile?.name
         tv_agency.text = profile?.agency_name
         tv_phone.text = profile?.telephone
-        im_logout.setOnClickListener {
-            var ed=context?.getSharedPreferences("file",AppCompatActivity.MODE_PRIVATE)
-            ed?.edit()?.remove("userId")?.commit()
-            var intent = Intent(context, LoginActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
-        }
+//        im_logout.setOnClickListener {
+//            var ed=context?.getSharedPreferences("file",AppCompatActivity.MODE_PRIVATE)
+//            ed?.edit()?.remove("userId")?.commit()
+//            var intent = Intent(context, LoginActivity::class.java)
+//            startActivity(intent)
+//            activity?.finish()
+//        }
     }
 
 }
